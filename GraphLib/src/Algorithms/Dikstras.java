@@ -18,28 +18,38 @@ public class Dikstras {
 		PriorityQueue<VertexVal<V>> pq = new PriorityQueue<VertexVal<V>>();
 		HashSet<VertexVal<V>> checked = new HashSet<VertexVal<V>>();
 		HashMap<V,VertexVal<V>> map = new HashMap<V,VertexVal<V>>();
-		VertexVal<V> s = new VertexVal<V>(source,0);
-		map.put(source, s);
+		VertexVal<V> s = addOrUpdate(map,source,0);
 		pq.add(s);		
 		while(!pq.isEmpty()) {
 			VertexVal<V> current = pq.poll();
-			V currentVertex = current.vertex;
-			for(WeightedDirectionalEdge<V,W> de:graph.getOutgoingEdges(currentVertex)) {
-				if(!map.containsKey(de.getOpposingVertex(currentVertex))) {
-					VertexVal<V> temp = new VertexVal<V>(de.getOpposingVertex(currentVertex),de.getWeight().intValue());
-					map.put(de.getOpposingVertex(currentVertex),temp);
-					pq.add(temp);					
+			checked.add(current);
+			for(WeightedDirectionalEdge<V,W> de:graph.getOutgoingEdges(current.vertex)) {
+				VertexVal<V> temp = addOrUpdate(map,de.getOpposingVertex(current.vertex),de.getWeight().intValue());	
+				if(!checked.contains(temp)){
+					pq.add(temp);
 				}
-				else {
-					if(!checked.contains(map.get(de.getOpposingVertex(currentVertex)))) {
-						
-					}
-				}
-				
-				
 			}
 		}
+		
+		// this is where 
+		return null;
+		
+	}
 	
+	private static <V, W extends Number> VertexVal<V> addOrUpdate(HashMap<V, VertexVal<V>> discoverMap, V vertex, int value){
+		VertexVal<V> ret;
+		if(!discoverMap.containsKey(vertex)){
+			discoverMap.put(vertex, new VertexVal<V>(vertex,value));
+			ret = discoverMap.get(vertex);
+		}
+		else{
+			int temp = discoverMap.get(vertex).val;
+			ret = discoverMap.get(vertex);
+			if (value <(temp+value)){
+				ret.val = temp+value;
+			}
+		}
+		return ret;
 	}
 	
 
@@ -81,7 +91,7 @@ public class Dikstras {
 		@Override
 		public int compareTo(VertexVal<V> o) {
 			// TODO Auto-generated method stub
-			return this.val - o.val;;
+			return this.val - o.val;
 		}
 	}
 
