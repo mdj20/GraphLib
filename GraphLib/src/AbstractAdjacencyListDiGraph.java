@@ -31,7 +31,7 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 				ret.add( e.getOpposingVertex(vertex));
 			}
 		}
-		return null;
+		return ret;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 				}
 			}
 		}
-		return null;
+		return ret;
 	}
 
 	@Override

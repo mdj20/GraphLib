@@ -5,7 +5,7 @@ import Interfaces.DirectionalEdge;
 public class DiGraphTest {
 	
 	SimpleAdjacencyListDiGraph<Character> graph = new SimpleAdjacencyListDiGraph<Character>();
-	int maxV = 7; 
+	int maxV = 25; 
 	Random rando = new Random(System.currentTimeMillis());
 	
 	private void smoke(){
@@ -14,8 +14,11 @@ public class DiGraphTest {
 		}
 		for (char c:graph.getVertices()){
 			System.out.println(c);
+			for(Character c2:graph.getAdjacentVertices(c)){
+				System.out.println(c2);
+			}
 		}
-		addRandomEdges(10);
+		addRandomEdges(50);
 		for(DirectionalEdge<Character> de: graph.getEdges()){
 			System.out.println(de.getSource()+" "+de.getSink());
 		}
@@ -24,6 +27,14 @@ public class DiGraphTest {
 		for(DirectionalEdge<Character> de: graph.getEdges()){
 			System.out.println(de.getSource()+" "+de.getSink());
 		}
+		for (char c:graph.getVertices()){
+			System.out.print(c+": ");
+			for(Character c2:graph.getOutgoingVertices(c)){
+				System.out.print(c2+" ");
+			}
+			System.out.println();
+		}
+		
 		
 	}
 	
