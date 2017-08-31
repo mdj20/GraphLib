@@ -1,6 +1,7 @@
 import Interfaces.Weighted;
+import Interfaces.WeightedDirectionalEdge;
 
-public class WeightedDiEdge<V, W> extends DiEdge<V> implements Weighted<W> {
+public class WeightedDiEdge<V, W> extends DiEdge<V> implements WeightedDirectionalEdge<V,W> {
 
 	private W weight;
 	
