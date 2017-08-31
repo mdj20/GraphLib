@@ -1,3 +1,4 @@
+package main;
 import Interfaces.Edge;
 import Interfaces.Weighted;
 

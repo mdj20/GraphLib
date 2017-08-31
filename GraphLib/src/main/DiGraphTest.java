@@ -1,3 +1,4 @@
+package main;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,12 +37,9 @@ public class DiGraphTest {
 			}
 			System.out.println();
 		}
-		
 		for(Character c:DFS(tc(1),tc(3))){
 			System.out.println(c);
 		}
-		
-		
 	}
 	
 	private void addRandomEdges(int n){
@@ -95,6 +93,4 @@ public class DiGraphTest {
 		}
 		return ret;
 	}
-	
-	
 }

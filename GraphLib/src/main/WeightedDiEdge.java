@@ -1,3 +1,4 @@
+package main;
 import Interfaces.Weighted;
 import Interfaces.WeightedDirectionalEdge;
 

@@ -1,3 +1,4 @@
+package main;
 
 public class SimpleEdge<V> extends AbstractEdge<V>{
 	SimpleEdge(V v0, V v1) {

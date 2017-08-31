@@ -1,3 +1,4 @@
+package main;
 import Interfaces.DiGraph;
 import Interfaces.WeightedDirectionalEdge;
 import Interfaces.WeightedGraph;

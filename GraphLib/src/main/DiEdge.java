@@ -1,3 +1,4 @@
+package main;
 import Interfaces.Directional;
 import Interfaces.DirectionalEdge;
 import Interfaces.Edge;

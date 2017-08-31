@@ -1,3 +1,4 @@
+package main;
 
 public class SimpleAdjacencyListGraph<V> extends AbstractAdjacencyListGraph<V, SimpleEdge<V>> {
 	@Override
