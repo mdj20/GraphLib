@@ -11,6 +11,7 @@ import java.util.Set;
 
 import Interfaces.WeightedDirectionalEdge;
 import main.WeightedAdjacencyListDiGraph;
+import test.BuildWeightedDiGraph;
 
 public class Dikstras {
 	
@@ -24,7 +25,7 @@ public class Dikstras {
 			VertexVal<V> current = pq.poll();
 			checked.add(current);
 			for(WeightedDirectionalEdge<V,W> de:graph.getOutgoingEdges(current.vertex)) {
-				VertexVal<V> temp = addOrUpdate(map,de.getOpposingVertex(current.vertex),de.getWeight().intValue());	
+				VertexVal<V> temp = addOrUpdate(map,de.getOpposingVertex(current.vertex),de.getWeight().intValue()+current.val);	
 				if(!checked.contains(temp)){
 					pq.add(temp);
 				}
@@ -32,6 +33,10 @@ public class Dikstras {
 		}
 		
 		// this is where 
+		
+		for(V v : map.keySet()) {
+			System.out.println(v+" "+map.get(v).val);
+		}
 		return null;
 		
 	}
@@ -45,9 +50,10 @@ public class Dikstras {
 		else{
 			int temp = discoverMap.get(vertex).val;
 			ret = discoverMap.get(vertex);
-			if (value <(temp+value)){
-				ret.val = temp+value;
+			if (value < temp){
+				ret.val = value;
 			}
+			ret = discoverMap.get(vertex);
 		}
 		return ret;
 	}
@@ -72,11 +78,12 @@ public class Dikstras {
 	
 	// smoketest
 	public static void main(String args[]) {
-		Double d = 145.00;
-		Integer i = 145;
-		System.out.println(d.doubleValue());
-
-		System.out.println(i.doubleValue());
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = BuildWeightedDiGraph.getWeightedDiGraph();
+		findShortestPath(graph,'A','C');
+		System.out.println();
+		findShortestPath(graph,'C','A');
+		System.out.println();
+		findShortestPath(graph,'G','C');
 	}
 	
 	static class VertexVal<V> implements Comparable<VertexVal<V>>{
