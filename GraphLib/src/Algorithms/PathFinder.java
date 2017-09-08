@@ -1,6 +1,7 @@
 package Algorithms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -9,19 +10,20 @@ import java.util.PriorityQueue;
 import Algorithms.Dikstras.VertexVal;
 import Interfaces.WeightedDirectionalEdge;
 import main.WeightedAdjacencyListDiGraph;
+import test.BuildWeightedDiGraph;
 
 public class PathFinder {
 
 	public static <V,W extends Number & Comparable<W>> List<WeightedDirectionalEdge<V,W>> lazyDikstras(WeightedAdjacencyListDiGraph<V,W> graph, V source, V sink){
-		ArrayList<WeightedDirectionalEdge<V,W>> path = new ArrayList<>();;
-		PriorityQueue<VertexVal<V,W>> queue = new PriorityQueue<VertexVal<V,W>>();
-		HashSet<V> checked = new HashSet<V>();
-		HashMap<V,VertexVal<V,W>> map = new HashMap<V,VertexVal<V,W>>();
+		ArrayList<WeightedDirectionalEdge<V,W>> path = new ArrayList<>();  // return path;
+		PriorityQueue<VertexVal<V,W>> queue = new PriorityQueue<VertexVal<V,W>>();  // priority queue used to determine the lowest tentative value of vertices' distance
+		HashSet<V> checked = new HashSet<V>();  // set of vertices that have been checked 
+		HashMap<V,VertexVal<V,W>> map = new HashMap<V,VertexVal<V,W>>();  
 		VertexVal<V, W> sourceInfo = new VertexVal<V,W>(source,0);
 		
 		map.put(source, sourceInfo);
 		queue.add(sourceInfo);
-		while(!queue.isEmpty() && sink.equals(queue.poll().vertex)) {
+		while(!queue.isEmpty() && !sink.equals(queue.peek().vertex)) {
 			sourceInfo = queue.poll(); //pop next vertexInfo
 			checked.add(sourceInfo.vertex);  // add vertex to checked list
 			for(WeightedDirectionalEdge<V,W> edge: graph.getOutgoingEdges(sourceInfo.vertex)) {  // for each outgoing edge
@@ -42,21 +44,32 @@ public class PathFinder {
 				}
 			}
 		}
-		if(!queue.isEmpty()&&sink.equals(queue.peek().vertex)) {
+		if(!queue.isEmpty()&&sink.equals(queue.peek().vertex)) { //a ggregate results
 			V current = queue.poll().vertex;
 			while (!source.equals(current)) {
 				path.add(map.get(current).edge);
-				current = path.get(path.size()).getOpposingVertex(current);
+				current = path.get(path.size()-1).getOpposingVertex(current);
 			}
-			
+			Collections.reverse(path);
 		}
 		
+		
 		for(WeightedDirectionalEdge<V,W> edge: path) {
-			System.out.println(edge.getSource()+" "+edge.getSink()+" "+edge.getSink());
+			System.out.println(edge.getSource()+" "+edge.getWeight()+" "+edge.getSink());
 		}
 		
 		
 		return null;
+	}
+	
+	
+	public static void main(String args[]) {
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = BuildWeightedDiGraph.getWeightedDiGraph();
+		lazyDikstras(graph,'A','F');
+		System.out.println();
+		lazyDikstras(graph,'C','A');
+		System.out.println();
+		lazyDikstras(graph,'G','C');
 	}
 	
 	static class VertexVal<V,W> implements Comparable<VertexVal<V,W>>{
@@ -67,6 +80,7 @@ public class PathFinder {
 		VertexVal(V vertex, Integer val){
 			this.vertex = vertex;
 			this.val = val;
+			this.edge = null;
 		}
 		VertexVal(V vertex, Integer val,WeightedDirectionalEdge<V,W> edge) {
 			this.vertex = vertex;
