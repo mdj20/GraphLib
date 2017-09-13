@@ -1,7 +1,7 @@
 package main;
-import Interfaces.Directional;
-import Interfaces.DirectionalEdge;
-import Interfaces.Edge;
+import interfaces.Directional;
+import interfaces.DirectionalEdge;
+import interfaces.Edge;
 
 public class DiEdge<V> extends AbstractEdge<V> implements DirectionalEdge<V>, Edge<V> {
 

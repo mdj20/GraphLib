@@ -1,6 +1,6 @@
 package main;
-import Interfaces.Edge;
-import Interfaces.Weighted;
+import interfaces.Edge;
+import interfaces.Weighted;
 
 public class WeightedEdge<V,W> extends AbstractEdge<V> implements Edge<V>, Weighted<W> {
 

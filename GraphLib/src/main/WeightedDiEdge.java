@@ -1,6 +1,6 @@
 package main;
-import Interfaces.Weighted;
-import Interfaces.WeightedDirectionalEdge;
+import interfaces.Weighted;
+import interfaces.WeightedDirectionalEdge;
 
 public class WeightedDiEdge<V, W> extends DiEdge<V> implements WeightedDirectionalEdge<V,W> {
 

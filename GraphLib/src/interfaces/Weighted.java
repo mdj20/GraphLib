@@ -1,4 +1,4 @@
-package Interfaces;
+package interfaces;
 
 public interface Weighted<W> {
 	public W getWeight();

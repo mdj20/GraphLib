@@ -3,7 +3,7 @@ import java.awt.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Interfaces.DirectionalEdge;
+import interfaces.DirectionalEdge;
 
 public class DiGraphTest {
 	

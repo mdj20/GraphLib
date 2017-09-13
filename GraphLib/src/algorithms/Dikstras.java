@@ -1,4 +1,4 @@
-package Algorithms;
+package algorithms;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-import Interfaces.WeightedDirectionalEdge;
+import interfaces.WeightedDirectionalEdge;
 import main.WeightedAdjacencyListDiGraph;
 import test.BuildWeightedDiGraph;
 

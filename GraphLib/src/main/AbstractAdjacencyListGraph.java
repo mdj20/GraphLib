@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import Interfaces.Edge;
-import Interfaces.Graph;
+import interfaces.Edge;
+import interfaces.Graph;
 
 public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements Graph<V,E>{
 	protected HashMap<V, HashSet<E>> graph;

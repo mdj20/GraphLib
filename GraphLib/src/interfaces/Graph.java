@@ -1,4 +1,4 @@
-package Interfaces;
+package interfaces;
 import java.util.Set;
 
 public interface Graph<V,E extends Edge<V>> {

@@ -2,9 +2,9 @@ package main;
 import java.util.HashSet;
 import java.util.Set;
 
-import Interfaces.DiGraph;
-import Interfaces.DirectionalEdge;
-import Interfaces.Edge;
+import interfaces.DiGraph;
+import interfaces.DirectionalEdge;
+import interfaces.Edge;
 
 public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V>> extends AbstractAdjacencyListGraph<V,E> implements DiGraph<V,E> {
 

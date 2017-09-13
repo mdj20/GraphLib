@@ -1,7 +1,7 @@
 package main;
 import java.util.Random;
 
-import Interfaces.Edge;
+import interfaces.Edge;
 
 public class SimpleAdjacencyListGraphTest {
 	

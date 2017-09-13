@@ -2,7 +2,7 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.Edge;
+import interfaces.Edge;
 
 public abstract class AbstractEdge<V> implements Edge<V> {
 	ArrayList<V> v = new ArrayList<V>(2);

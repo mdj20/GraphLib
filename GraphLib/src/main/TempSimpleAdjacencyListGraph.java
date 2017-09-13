@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import Interfaces.Edge;
-import Interfaces.Graph;
+import interfaces.Edge;
+import interfaces.Graph;
 
 /*
  * 	TempSimpleAdjacencyListGraph is an undirected graph, allows for both loops and parallel edges.
