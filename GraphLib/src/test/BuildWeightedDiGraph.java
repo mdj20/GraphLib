@@ -61,7 +61,8 @@ public class BuildWeightedDiGraph {
 		return graph;
 	}
 	
-	private static char tc(int i) {
+	// int to char convenience method
+	public static char tc(int i) {
 		return (char) (i+65);
 	}
 	
