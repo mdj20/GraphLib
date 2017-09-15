@@ -10,12 +10,14 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 import interfaces.WeightedDirectionalEdge;
+import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
+import main.WeightedEdge;
 import test.BuildWeightedDiGraph;
 
 public class Dikstras {
 	
-	public static <V, W extends Number> List<WeightedDirectionalEdge<V,W>> findShortestPath(WeightedAdjacencyListDiGraph<V,W> graph, V source, V sink){
+	public static <V,E extends WeightedEdge<V,W>, W extends Number> List<WeightedDirectionalEdge<V,W>> findShortestPath(WeightedGraph<V,E,W> graph, V source, V sink){
 		PriorityQueue<VertexVal<V,W>> pq = new PriorityQueue<VertexVal<V,W>>();
 		HashSet<VertexVal<V,W>> checked = new HashSet<VertexVal<V,W>>();
 		HashMap<V,VertexVal<V,W>> map = new HashMap<V,VertexVal<V,W>>();
@@ -26,7 +28,7 @@ public class Dikstras {
 			//System.out.println("THIS "+sink+" "+current.vertex );
 			//System.out.println(current.vertex+" "+current.val);
 			checked.add(current);
-			for(WeightedDirectionalEdge<V,W> de:graph.getOutgoingEdges(current.vertex)) {
+			for(E de:graph.getOutgoingEdges(current.vertex)) {
 				VertexVal<V,W> temp = addOrUpdate(map,pq,
 						de.getOpposingVertex(current.vertex),
 						de.getWeight().intValue()+current.val,de);	

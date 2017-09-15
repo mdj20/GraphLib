@@ -11,4 +11,8 @@ public interface Graph<V,E extends Edge<V>> {
 	public Set<E> getEdges();
 	public Set<V> getAdjacentVertices(V vertex);
 	public Set<E> getConnectingEdges(V vertex);
+	public Set<V> getOutgoingVertices(V vertex);
+	public Set<V> getIncomingVertices(V vertex);
+	public Set<E> getOutgoingEdges(V vertex);
+	public Set<E> getIncomingEdges(V vertex);
 }
