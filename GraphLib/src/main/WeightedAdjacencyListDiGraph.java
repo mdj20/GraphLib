@@ -8,13 +8,13 @@ public class WeightedAdjacencyListDiGraph<V, W> extends AbstractAdjacencyListDiG
 
 	@Override
 	public WeightedDirectionalEdge<V, W> createEdge(V vertex1, V vertex2) {
-		return new WeightedDiEdge<V,W>(vertex1,vertex2);
+		return new SimpleWeightedDirectionalEdge<V,W>(vertex1,vertex2);
 	}
 
 	@Override
 	public void addEdge(V vertex1, V vertex2, W weight) {
 		if(checkVertices(vertex1,vertex2)){
-			WeightedDirectionalEdge<V,W> edge = new WeightedDiEdge<V,W>(vertex1,vertex2,weight); 
+			WeightedDirectionalEdge<V,W> edge = new SimpleWeightedDirectionalEdge<V,W>(vertex1,vertex2,weight); 
 			addEdgeToGraph(vertex1,edge);
 			edges.add(edge);
 		}

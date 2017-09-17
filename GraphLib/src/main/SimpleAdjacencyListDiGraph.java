@@ -11,6 +11,6 @@ public class SimpleAdjacencyListDiGraph<V> extends AbstractAdjacencyListDiGraph<
 
 	@Override
 	public DirectionalEdge<V> createEdge(V vertex1, V vertex2) {
-		return new DiEdge<V>(vertex1,vertex2);
+		return new SimpleDirectionalEdge<V>(vertex1,vertex2);
 	}
 }

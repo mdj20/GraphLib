@@ -23,6 +23,12 @@ public abstract class AbstractEdge<V> implements Edge<V> {
 		}
 		return ret;
 	}
-	
-
+	public boolean isReciprical(Edge<V> edge){
+		boolean ret = false;
+		List<V> verts = edge.getVertices();
+		if(v.get(0).equals(verts.get(1)) && v.get(1).equals(verts.get(0))){
+			ret = true;
+		}
+		return ret;
+	}
 }

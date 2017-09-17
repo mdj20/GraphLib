@@ -8,23 +8,4 @@ public class SimpleAdjacencyListGraph<V> extends AbstractAdjacencyListGraph<V, S
 		return new SimpleEdge<V>(vertex1,vertex2);
 	}
 
-	@Override
-	public Set<V> getOutgoingVertices(V vertex) {
-		return super.getAdjacentVertices(vertex);
-	}
-
-	@Override
-	public Set<V> getIncomingVertices(V vertex) {
-		return super.getAdjacentVertices(vertex);
-	}
-
-	@Override
-	public Set<SimpleEdge<V>> getOutgoingEdges(V vertex) {
-		return super.getConnectingEdges(vertex);
-	}
-
-	@Override
-	public Set<SimpleEdge<V>> getIncomingEdges(V vertex) {
-		return super.getConnectingEdges(vertex);
-	}
 }

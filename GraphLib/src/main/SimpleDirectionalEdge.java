@@ -3,9 +3,9 @@ import interfaces.Directional;
 import interfaces.DirectionalEdge;
 import interfaces.Edge;
 
-public class DiEdge<V> extends AbstractEdge<V> implements DirectionalEdge<V>, Edge<V> {
+public class SimpleDirectionalEdge<V> extends AbstractEdge<V> implements DirectionalEdge<V>, Edge<V> {
 
-	DiEdge(V source, V sink) {
+	SimpleDirectionalEdge(V source, V sink) {
 		super(source, sink);
 		// TODO Auto-generated constructor stub
 	}

@@ -2,9 +2,9 @@ package main;
 import interfaces.Edge;
 import interfaces.Weighted;
 
-public class WeightedEdge<V,W> extends AbstractEdge<V> implements Edge<V>, Weighted<W> {
+public class SimpleWeightedEdge<V,W> extends AbstractEdge<V> implements Edge<V>, Weighted<W> {
 
-	WeightedEdge(V v0, V v1) {
+	SimpleWeightedEdge(V v0, V v1) {
 		super(v0, v1);
 		// TODO Auto-generated constructor stub
 	}

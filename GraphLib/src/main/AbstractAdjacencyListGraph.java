@@ -102,6 +102,26 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	protected boolean removeEdgeFromGraph(V vertex, E edge) {
 		return graph.get(vertex).remove(edge);
 	}
+
+	@Override
+	public Set<V> getOutgoingVertices(V vertex) {
+		return getAdjacentVertices(vertex);
+	}
+
+	@Override
+	public Set<V> getIncomingVertices(V vertex) {
+		return getAdjacentVertices(vertex);
+	}
+
+	@Override
+	public Set<E> getOutgoingEdges(V vertex) {
+		return getConnectingEdges(vertex);
+	}
+
+	@Override
+	public Set<E> getIncomingEdges(V vertex) {
+		return getConnectingEdges(vertex);
+	}
 	
 }
 
