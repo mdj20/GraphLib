@@ -19,7 +19,6 @@ public class RecipricalTest {
 	private List<Edge<Integer>> fillList(List<Edge<Integer>> edges, int n){
 		return this.fillList(edges, n, n);
 	}
-	
 	private List<Edge<Integer>> fillList(List<Edge<Integer>> edges, int n, int range ){
 		int j,k;
 		for(int i =0;i<n;i++){
@@ -29,7 +28,6 @@ public class RecipricalTest {
 		}
 		return edges;
 	}
-	
 	private void print(List<Edge<Integer>> edges){
 		for(Edge<Integer> e: edges){
 			print(e);
@@ -88,6 +86,9 @@ public class RecipricalTest {
 			}
 			System.out.println(k+" "+(i+=k));
 		}
+		
+
 	}
+	
 	
 }
