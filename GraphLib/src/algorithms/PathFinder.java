@@ -110,12 +110,8 @@ public class PathFinder {
 
 	public static void main(String args[]) {
 		WeightedAdjacencyListDiGraph<Character,Integer> graph = BuildWeightedDiGraph.getWeightedDiGraph();
-		/*lazyDikstras(graph,'A','F');
-		System.out.println();
-		lazyDikstras(graph,'C','A');
-		System.out.println();
-		lazyDikstras(graph,'G','C');
-		*/
+		WeightedGraph<Character,WeightedEdge<Character,Integer>,Integer> wg = (WeightedGraph<Character,WeightedEdge<Character,Integer>,Integer>) graph; 
+		lazyDikstras(graph,'A','E');
 		
 		
 		for (int i = 0 ; i <50 ; i++) {
