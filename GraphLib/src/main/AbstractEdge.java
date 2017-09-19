@@ -13,6 +13,9 @@ public abstract class AbstractEdge<V> implements Edge<V> {
 	public List<V> getVertices() {
 		return v; 
 	}
+	public V getVertex(int index){
+		return v.get(index);
+	}
 	public V getOpposingVertex(V vertex) {
 		V ret = null;
 		if (v.get(0).equals(vertex)) {
