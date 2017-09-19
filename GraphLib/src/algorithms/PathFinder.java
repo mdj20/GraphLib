@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 import algorithms.Dikstras.VertexVal;
+import interfaces.Graph;
 import interfaces.WeightedDirectionalEdge;
 import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;
@@ -114,6 +115,8 @@ public class PathFinder {
 		lazyDikstras(graph,'C','A');
 		System.out.println();
 		lazyDikstras(graph,'G','C');
+		WeightedGraph<Character,WeightedEdge<Character,Integer>,Integer> wg = (WeightedGraph<Character,WeightedEdge<Character,Integer>,Integer>) graph; 
+		lazyDikstras(graph,'A','E');
 		
 		
 		
@@ -123,7 +126,8 @@ public class PathFinder {
 			System.out.println();
 		}
 	}
-	
+
+
 	private static class VertexInt<V,T extends Number & Comparable<T>,W> implements Comparable<VertexInt<V,T,W>>{
 		
 		V vertex;
