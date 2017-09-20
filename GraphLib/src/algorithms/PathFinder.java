@@ -110,7 +110,7 @@ public class PathFinder {
 
 	public static void main(String args[]) {
 		WeightedAdjacencyListDiGraph<Character,Integer> graph = BuildWeightedDiGraph.getWeightedDiGraph();
-
+	
 		
 		lazyDikstras(graph,'A','F');
 		System.out.println();

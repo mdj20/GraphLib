@@ -1,6 +1,8 @@
 package main;
 import interfaces.DiGraph;
+import interfaces.DirectionalEdge;
 import interfaces.WeightedDirectionalEdge;
+import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;
 
 public class WeightedAdjacencyListDiGraph<V, W> extends AbstractAdjacencyListDiGraph<V,WeightedDirectionalEdge<V,W>> 
