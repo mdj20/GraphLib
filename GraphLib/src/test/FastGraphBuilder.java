@@ -5,7 +5,10 @@ import java.util.Arrays;
 import java.util.Random;
 
 import interfaces.WeightedDirectionalEdge;
+import interfaces.WeightedEdge;
+import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
+import main.WeightedAdjacencyListGraph;
 
 /*
  * this class is a testing builder of graphs 
@@ -19,10 +22,13 @@ public class FastGraphBuilder {
 	public final static Integer WEIGHTS[] = { 4,  7,  2,  2,  4,  4,  1,  2,  1,  2,  5,  1 };
 	
 	public static WeightedAdjacencyListDiGraph<Character,Integer> getWeightedDiGraph(){
-		return getWeightedDiGraph(VERTEX_CHARS,SOURCE,SINK,WEIGHTS);
+		return buildWeightedDiGraph(VERTEX_CHARS,SOURCE,SINK,WEIGHTS);
+	}
+	public static WeightedAdjacencyListGraph<Character,Integer> getWeightedGraph(){
+		return buildWeightedGraph(VERTEX_CHARS,SOURCE,SINK,WEIGHTS);
 	}
 
-	public static <V,W extends Number & Comparable<W>> WeightedAdjacencyListDiGraph<V,W> getWeightedDiGraph(V vertex[], V edgeS[], V edgeE[], W weights[]){
+	public static <V,W extends Number & Comparable<W>> WeightedAdjacencyListDiGraph<V,W> buildWeightedDiGraph(V vertex[], V edgeS[], V edgeE[], W weights[]){
 		if(edgeS.length != edgeS.length && edgeS.length != weights.length) {
 			throw new IllegalArgumentException("Lengths of edge arrays, must equal");
 		}
@@ -63,6 +69,17 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
+	public static <V, W> WeightedAdjacencyListGraph<V,W> buildWeightedGraph(V vert[], V source[], V sink[], W weight[]){
+		WeightedAdjacencyListGraph<V,W> graph = new WeightedAdjacencyListGraph<V,W>();
+		for(V v:vert) {
+			graph.addVertex(v);
+		}
+		for(int i=0;i<source.length;i++) {
+			graph.addEdge(source[i], sink[i], weight[i]);
+		}
+		return graph;
+	}
+	
 	// int to char convenience method
 	public static char tc(int i) {
 		if (i > 25){
@@ -70,11 +87,22 @@ public class FastGraphBuilder {
 		}
 		return (char) (i+65);
 	}
-	
 	public static int[] fillArrayRandom(int array[], int upperBound, int offset){
 		Random rando = new Random(System.nanoTime());
 		for(int i = 0 ; i < array.length; i++){
 			array[i] = rando.nextInt(upperBound)+offset;
+		}
+		return array;
+	}
+	public static char[] fillArray(char array[]) {
+		for (int i =0; i<array.length ; i++) {
+			array[i] = tc(i);
+		}
+		return array;
+	}
+	public static int[] fillArray(int array[], int offset) {
+		for(int i = 0; i< array.length; i++) {
+			array[i] = i+offset;
 		}
 		return array;
 	}
@@ -84,19 +112,13 @@ public class FastGraphBuilder {
 	
 	// smoke test main
 	public static void main(String args[]) {
-		//Character chars[] = Arrays.stream
-		ArrayList<Double> doubles = new ArrayList<>();
-		for(int i = 0 ; i< WEIGHTS.length;i++) {
-			doubles.add(new Double(WEIGHTS[i]));
+		char chars[] = new char[10];
+		WeightedAdjacencyListGraph<Character,Integer> graph = getWeightedGraph();
+		for(Character c : graph.getVertices()) {
+			System.out.println(c);
 		}
-		WeightedAdjacencyListDiGraph<Character,Double> graph2 =  getWeightedDiGraph(VERTEX_CHARS,SOURCE,SINK,doubles.toArray(new Double[doubles.size()]));
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = buildRandomDiGraph(7,14,1,6);
-		for(char c: graph2.getVertices()) {
-			System.out.println(c+":");
-			for(WeightedDirectionalEdge<Character,Double> de: graph2.getOutgoingEdges(c)){
-				System.out.println(de.getSource()+" "+de.getSink()+" "+de.getWeight());
-			}
-			System.out.println();
+		for(WeightedEdge<Character,Integer> c : graph.getEdges()) {
+			System.out.println(c.getVertex(0)+" "+c.getWeight()+" "+c.getVertex(1));
 		}
 	}
 	
