@@ -11,7 +11,7 @@ import main.WeightedAdjacencyListDiGraph;
  * this class is a testing builder of graphs 
  */ 
 
-public class BuildWeightedDiGraph {
+public class FastGraphBuilder {
 
 	public final static Character VERTEX_CHARS[]  = {'A','B','C','D','E','F','G','H'};
 	public final static Character SOURCE[]  = {'A','A','A','B','C','D','D','E','F','G','H','H'};
@@ -19,8 +19,6 @@ public class BuildWeightedDiGraph {
 	public final static Integer WEIGHTS[] = { 4,  7,  2,  2,  4,  4,  1,  2,  1,  2,  5,  1 };
 	
 	public static WeightedAdjacencyListDiGraph<Character,Integer> getWeightedDiGraph(){
-	
-
 		return getWeightedDiGraph(VERTEX_CHARS,SOURCE,SINK,WEIGHTS);
 	}
 
@@ -39,7 +37,7 @@ public class BuildWeightedDiGraph {
 		return graph;
 	}
 	
-	public static WeightedAdjacencyListDiGraph<Character,Integer> buildRandomGraph(int v, int e, int lowerBoundWeight, int upperBoundWeight ){
+	public static WeightedAdjacencyListDiGraph<Character,Integer> buildRandomDiGraph(int v, int e, int lowerBoundWeight, int upperBoundWeight ){
 		int range = 0,offset = 0;
 		if (lowerBoundWeight <= upperBoundWeight) {
 			range = upperBoundWeight-lowerBoundWeight;
@@ -67,10 +65,24 @@ public class BuildWeightedDiGraph {
 	
 	// int to char convenience method
 	public static char tc(int i) {
+		if (i > 25){
+			throw new IllegalArgumentException("i must be between 0 and 25");
+		}
 		return (char) (i+65);
 	}
 	
+	public static int[] fillArrayRandom(int array[], int upperBound, int offset){
+		Random rando = new Random(System.nanoTime());
+		for(int i = 0 ; i < array.length; i++){
+			array[i] = rando.nextInt(upperBound)+offset;
+		}
+		return array;
+	}
+	
+	
 
+	
+	// smoke test main
 	public static void main(String args[]) {
 		//Character chars[] = Arrays.stream
 		ArrayList<Double> doubles = new ArrayList<>();
@@ -78,7 +90,7 @@ public class BuildWeightedDiGraph {
 			doubles.add(new Double(WEIGHTS[i]));
 		}
 		WeightedAdjacencyListDiGraph<Character,Double> graph2 =  getWeightedDiGraph(VERTEX_CHARS,SOURCE,SINK,doubles.toArray(new Double[doubles.size()]));
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = buildRandomGraph(7,14,1,6);
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = buildRandomDiGraph(7,14,1,6);
 		for(char c: graph2.getVertices()) {
 			System.out.println(c+":");
 			for(WeightedDirectionalEdge<Character,Double> de: graph2.getOutgoingEdges(c)){

@@ -13,7 +13,7 @@ import interfaces.WeightedDirectionalEdge;
 import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
 import main.WeightedEdge;
-import test.BuildWeightedDiGraph;
+import test.FastGraphBuilder;
 
 public class Dikstras {
 	
@@ -197,7 +197,7 @@ public class Dikstras {
 	
 	// smoketest
 	public static void main(String args[]) {
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = BuildWeightedDiGraph.getWeightedDiGraph();
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
 		findShortestPath(graph,'A','F');
 		System.out.println();
 		findShortestPath(graph,'C','A');

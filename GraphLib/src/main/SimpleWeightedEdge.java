@@ -1,24 +1,29 @@
 package main;
 import interfaces.Edge;
 import interfaces.Weighted;
+import interfaces.WeightedEdge;
 
-public class SimpleWeightedEdge<V,W> extends AbstractEdge<V> implements Edge<V>, Weighted<W> {
+public class SimpleWeightedEdge<V,W> extends AbstractEdge<V> implements WeightedEdge<V,W>, Edge<V>, Weighted<W> {
 
+	private W weight;
+	
 	SimpleWeightedEdge(V v0, V v1) {
 		super(v0, v1);
 		// TODO Auto-generated constructor stub
 	}
+	SimpleWeightedEdge(V v0, V v1, W weight){
+		this(v0,v1);
+		this.weight = weight;
+	}
 
 	@Override
 	public W getWeight() {
-		// TODO Auto-generated method stub
-		return null;
+		return weight;
 	}
 
 	@Override
 	public void setWeight(W weight) {
-		// TODO Auto-generated method stub
-		
+		this.weight = weight;
 	}
 
 }

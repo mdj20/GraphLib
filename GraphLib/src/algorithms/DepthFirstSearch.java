@@ -11,7 +11,7 @@ import java.util.Set;
 import interfaces.DiGraph;
 import interfaces.DirectionalEdge;
 import main.WeightedAdjacencyListDiGraph;
-import test.BuildWeightedDiGraph;
+import test.FastGraphBuilder;
 
 public class DepthFirstSearch {
 	/*
@@ -55,15 +55,15 @@ public class DepthFirstSearch {
 	}
 	
 	public static void main(String args[]) {
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = BuildWeightedDiGraph.getWeightedDiGraph();
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
 		for(Character c: DFS(graph,'A','F')) {
 			System.out.println(c);
 		}
 		for(int i = 0 ; i<50 ; i++) {
 			int j = i%3 ,k = i%7;
-			System.out.println(i+": "+BuildWeightedDiGraph.tc(j)+" to "+BuildWeightedDiGraph.tc(k));
-			graph = BuildWeightedDiGraph.buildRandomGraph(7, 10, 0, 6);
-			for(Character c: DFS(graph,BuildWeightedDiGraph.tc(j),BuildWeightedDiGraph.tc(k))) {
+			System.out.println(i+": "+FastGraphBuilder.tc(j)+" to "+FastGraphBuilder.tc(k));
+			graph = FastGraphBuilder.buildRandomDiGraph(7, 10, 0, 6);
+			for(Character c: DFS(graph,FastGraphBuilder.tc(j),FastGraphBuilder.tc(k))) {
 				System.out.println(c);
 			}
 			System.out.println();

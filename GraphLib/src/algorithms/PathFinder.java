@@ -13,7 +13,7 @@ import interfaces.WeightedDirectionalEdge;
 import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
-import test.BuildWeightedDiGraph;
+import test.FastGraphBuilder;
 
 public class PathFinder {
 
@@ -107,7 +107,7 @@ public class PathFinder {
 	
 
 	public static void main(String args[]) {
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = BuildWeightedDiGraph.getWeightedDiGraph();
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
 		List<WeightedDirectionalEdge<Character, Integer>>  path =lazyDikstras(graph,'A','F');
 
 		
@@ -123,7 +123,7 @@ public class PathFinder {
 		
 		
 		for (int i = 0 ; i <50 ; i++) {
-			graph = BuildWeightedDiGraph.buildRandomGraph(5, 7, 1, 15);
+			graph = FastGraphBuilder.buildRandomDiGraph(5, 7, 1, 15);
 			lazyDikstrasDouble(graph,'A','E');
 			System.out.println();
 		}
