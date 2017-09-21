@@ -2,7 +2,9 @@ package test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import interfaces.WeightedDirectionalEdge;
 import interfaces.WeightedEdge;
@@ -69,6 +71,32 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
+	public static WeightedAdjacencyListGraph<Character,Integer> buildRandomWeightedGraph(int v, int e,  int lowerBoundWeight, int upperBoundWeight ) {
+		int range = 0,offset = 0;
+		if (lowerBoundWeight <= upperBoundWeight) {
+			range = upperBoundWeight-lowerBoundWeight;
+			offset = lowerBoundWeight;
+		}
+		else if (upperBoundWeight<=lowerBoundWeight) {
+			range = lowerBoundWeight-upperBoundWeight;
+			offset = upperBoundWeight;
+		}
+		
+		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>();
+		Random rando = new Random(System.nanoTime());
+		for(int i = 0 ; i< v; i++ ) {
+			graph.addVertex(tc(i));
+		}
+		int source, sink, weight;
+		for(int i = 0 ; i<e ; i++) {
+			source = rando.nextInt(v);
+			sink = rando.nextInt(v);
+			weight = rando.nextInt(range)+offset;
+			graph.addEdge(tc(source), tc(sink), weight);
+		}
+		return graph;
+	}
+	
 	public static <V, W> WeightedAdjacencyListGraph<V,W> buildWeightedGraph(V vert[], V source[], V sink[], W weight[]){
 		WeightedAdjacencyListGraph<V,W> graph = new WeightedAdjacencyListGraph<V,W>();
 		for(V v:vert) {
@@ -120,6 +148,20 @@ public class FastGraphBuilder {
 		for(WeightedEdge<Character,Integer> c : graph.getEdges()) {
 			System.out.println(c.getVertex(0)+" "+c.getWeight()+" "+c.getVertex(1));
 		}
+		
+		
+		System.out.println("Random Smoke Test");
+		graph = buildRandomWeightedGraph(10,15,0,7);
+		for(int i =0;i<50;i++) {
+			for(Character c : graph.getVertices()) {
+				System.out.println("Vertex: "+c);
+				for (WeightedEdge<Character,Integer> we:graph.getConnectingEdges(c)){
+					System.out.println(we.getVertex(0)+" "+we.getWeight()+" "+we.getVertex(1));
+				}
+			
+			}
+		}
+		
 	}
 	
 }
