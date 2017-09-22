@@ -41,6 +41,7 @@ public class DepthFirstSearch {
 		boolean ret = false;
 		if(!sink.equals(stack.peek())) {
 			for(V v: graph.getOutgoingVertices(stack.peek())) {
+				System.out.println("V:"+v+" "+stack.size());
 				if(!set.contains(v)) {
 					push(v,stack,set);
 					if (dfsRec(graph,stack,set,sink)) {
@@ -90,9 +91,10 @@ public class DepthFirstSearch {
 		ArrayList<Integer> verts = new ArrayList<Integer>(graph.getVertices());
 		Random rando = new Random(System.nanoTime());
 		ArrayList<Integer> pathSize = new ArrayList<>();
-		for(int i =0;i<500;i++) {
+		for(int i =0;i<200;i++) {
 			low = verts.get(rando.nextInt(verts.size()));
 			high = verts.get(rando.nextInt(verts.size()));
+			System.out.println("LOW"+low+" "+high);
 			List<Integer> path = DFS(graph,low,high);
 			for(Integer c: path) {
 				//System.out.println(c);
