@@ -108,16 +108,9 @@ public class PathFinder {
 	
 
 	public static void main(String args[]) {
-	
-
 
 		
 		
-		for (int i = 0 ; i <50 ; i++) {
-			graph = FastGraphBuilder.buildRandomDiGraph(5, 7, 1, 15);
-			lazyDikstrasDouble(graph,'A','E');
-			System.out.println();
-		}
 	}
 
 
