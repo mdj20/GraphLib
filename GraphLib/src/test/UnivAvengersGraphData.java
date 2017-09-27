@@ -33,7 +33,7 @@ public class UnivAvengersGraphData {
 		return file;	
 	}
 	
-	public static List<Edge<Integer>> chomp(BufferedReader breader) throws IOException {
+	private static List<Edge<Integer>> chomp(BufferedReader breader) throws IOException {
 	
 		LinkedList<Edge<Integer>> edgeList = new LinkedList<>();
 		String line;
