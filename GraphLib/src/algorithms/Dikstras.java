@@ -12,7 +12,7 @@ import java.util.Set;
 import interfaces.WeightedDirectionalEdge;
 import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
-import main.WeightedEdge;
+import interfaces.WeightedEdge;
 import test.FastGraphBuilder;
 
 public class Dikstras {
@@ -31,7 +31,7 @@ public class Dikstras {
 			for(E de:graph.getOutgoingEdges(current.vertex)) {
 				VertexVal<V,W> temp = addOrUpdate(map,pq,
 						de.getOpposingVertex(current.vertex),
-						de.getWeight().intValue()+current.val,de);	
+						de.getWeight().intValue()+current.val, de);	
 			}
 			
 		}
@@ -145,7 +145,7 @@ public class Dikstras {
 		return ret;
 	}
 	
-	private static <V, W extends Number> VertexVal<V,W> addOrUpdate(HashMap<V, VertexVal<V,W>> discoverMap, PriorityQueue<VertexVal<V,W>> pq, V vertex, int value, WeightedDirectionalEdge<V,W> edge){
+	private static <V, W extends Number> VertexVal<V,W> addOrUpdate(HashMap<V, VertexVal<V,W>> discoverMap, PriorityQueue<VertexVal<V,W>> pq, V vertex, int value, WeightedEdge<V,W> edge){
 		VertexVal<V,W> ret;
 		if(!discoverMap.containsKey(vertex)){
 			discoverMap.put(vertex, new VertexVal<V,W>(vertex,value,edge));
@@ -209,12 +209,12 @@ public class Dikstras {
 		
 		V vertex;
 		Integer val;
-		WeightedDirectionalEdge<V,W> edge;
+		WeightedEdge<V,W> edge;
 		VertexVal(V vertex, Integer val){
 			this.vertex = vertex;
 			this.val = val;
 		}
-		VertexVal(V vertex, Integer val,WeightedDirectionalEdge<V,W> edge) {
+		VertexVal(V vertex, Integer val,WeightedEdge<V,W> edge) {
 			this.vertex = vertex;
 			this.val = val;
 			this.edge = edge;
