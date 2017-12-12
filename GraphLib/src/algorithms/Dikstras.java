@@ -17,26 +17,23 @@ import test.FastGraphBuilder;
 
 public class Dikstras {
 	
-	public static <V,E extends WeightedEdge<V,W>, W extends Number> List<WeightedDirectionalEdge<V,W>> findShortestPath(WeightedGraph<V,E,W> graph, V source, V sink){
+	public static <V,E extends WeightedEdge<V,W>, W extends Number> List<V> findShortestPath(WeightedGraph<V,E,W> graph, V source, V sink){
 		PriorityQueue<VertexVal<V,W>> pq = new PriorityQueue<VertexVal<V,W>>();
 		HashSet<VertexVal<V,W>> checked = new HashSet<VertexVal<V,W>>();
 		HashMap<V,VertexVal<V,W>> map = new HashMap<V,VertexVal<V,W>>();
 		VertexVal<V,W> s = addOrUpdate(map,pq,source,0);
+		ArrayList<V> path = new ArrayList<>();
 		//pq.add(s);		
 		while(!pq.isEmpty()&&(!pq.peek().vertex.equals(sink))) {
 			VertexVal<V,W> current = pq.poll();
-			//System.out.println("THIS "+sink+" "+current.vertex );
-			//System.out.println(current.vertex+" "+current.val);
 			checked.add(current);
 			for(E de:graph.getOutgoingEdges(current.vertex)) {
 				VertexVal<V,W> temp = addOrUpdate(map,pq,
 						de.getOpposingVertex(current.vertex),
 						de.getWeight().intValue()+current.val, de);	
 			}
-			
 		}
 		if(!pq.isEmpty()&&pq.peek().vertex.equals(sink)) {
-			ArrayList<V> path = new ArrayList<>();
 			path.add(pq.poll().vertex);
 			ArrayList<VertexVal<V,W>> sortedValues = new ArrayList<VertexVal<V,W>>(map.values());			
 			Collections.sort(sortedValues);
@@ -46,27 +43,15 @@ public class Dikstras {
 				for(VertexVal<V,W> vv:sortedValues) {
 					if(incoming.contains(vv.vertex)) {
 						path.add(vv.vertex);
+						break;
 					}
 				}
 				incoming = graph.getIncomingVertices(path.get(path.size()-1));
 			}
 			path.add(sortedValues.get(0).vertex);
 			Collections.reverse(path);
-			System.out.println("PATH!");
-			for(V v:path) {
-				System.out.println(v);
-			}
-			
 		}
-
-		
-		// this is where 
-		
-		for(V v : map.keySet()) {
-			System.out.println(v+" "+map.get(v).val);
-		}
-		return null;
-		
+		return path;
 	}
 	
 	public static <V, W extends Number & Comparable<W>> List<WeightedDirectionalEdge<V,W>> shortestPathDikstra(WeightedAdjacencyListDiGraph<V,W> graph, V source, V sink){
@@ -202,7 +187,9 @@ public class Dikstras {
 		System.out.println();
 		findShortestPath(graph,'C','A');
 		System.out.println();
-		findShortestPath(graph,'G','C');
+		for(Character c:findShortestPath(graph,'G','C')) {
+			System.out.println(c);
+		};
 	}
 	
 	static class VertexVal<V,W> implements Comparable<VertexVal<V,W>>{
