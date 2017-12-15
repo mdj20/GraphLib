@@ -97,17 +97,12 @@ public class Dikstras {
 
 		
 		// this is where 
-		
 		for(V v : map.keySet()) {
 			System.out.println(v+" "+map.get(v).val);
 		}
 		return null;
 		
 	}
-	
-	
-	
-	
 	
 	private static <V, W extends Number> VertexVal<V,W> addOrUpdate(HashMap<V, VertexVal<V,W>> discoverMap, PriorityQueue<VertexVal<V,W>> pq, V vertex, int value){
 		VertexVal<V,W> ret;
@@ -173,12 +168,6 @@ public class Dikstras {
 		}
 		return distanceMap;
 	}
-	
-
-	
-
-	
-	
 	
 	// smoketest
 	public static void main(String args[]) {

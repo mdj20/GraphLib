@@ -71,7 +71,7 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
-	public static WeightedAdjacencyListGraph<Character,Integer> buildRandomWeightedGraph(int v, int e,  int lowerBoundWeight, int upperBoundWeight ) {
+	public static WeightedAdjacencyListGraph<Character,Integer> buildRandomWeightedGraph(int numVetecies, int numEdges,  int lowerBoundWeight, int upperBoundWeight ) {
 		int range = 0,offset = 0;
 		if (lowerBoundWeight <= upperBoundWeight) {
 			range = upperBoundWeight-lowerBoundWeight;
@@ -84,13 +84,13 @@ public class FastGraphBuilder {
 		
 		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>();
 		Random rando = new Random(System.nanoTime());
-		for(int i = 0 ; i< v; i++ ) {
+		for(int i = 0 ; i< numVetecies; i++ ) {
 			graph.addVertex(tc(i));
 		}
 		int source, sink, weight;
-		for(int i = 0 ; i<e ; i++) {
-			source = rando.nextInt(v);
-			sink = rando.nextInt(v);
+		for(int i = 0 ; i<numEdges ; i++) {
+			source = rando.nextInt(numVetecies);
+			sink = rando.nextInt(numVetecies);
 			weight = rando.nextInt(range)+offset;
 			graph.addEdge(tc(source), tc(sink), weight);
 		}
