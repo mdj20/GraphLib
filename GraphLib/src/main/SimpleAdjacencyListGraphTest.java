@@ -86,5 +86,19 @@ public class SimpleAdjacencyListGraphTest {
 	public void testGetIncomingEdges() {
 		fail("Not yet implemented");
 	}
+	
+	
+	// method will return a vertex
+	private int getEdgeVertex(ArrayList<Integer> testValues, int edge, int skip, boolean source){
+		int index = testValues.size()%(edge*skip);
+		int ret = 0;
+		if(source){
+			ret = testValues.get(index);
+		}
+		else{
+			ret = testValues.get(testValues.size()-1-index);
+		}
+		return ret;
+	}
 
 }
