@@ -69,5 +69,12 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 		}
 		return ret;
 	}
+	
+	@Override 
+	public Set<E> getConnectingEdges(V vertex){
+		Set<E> incoming = this.getIncomingEdges(vertex);
+		incoming.addAll(this.getOutgoingEdges(vertex));
+		return incoming;
+	}
 
 }
