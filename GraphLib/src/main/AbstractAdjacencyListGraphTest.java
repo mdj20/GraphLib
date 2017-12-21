@@ -2,25 +2,19 @@ package main;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
-public class SimpleAdjacencyListGraphTest {
+import interfaces.Edge;
+
+abstract public class AbstractAdjacencyListGraphTest<V,E extends Edge<V>> {
 	
-	SimpleAdjacencyListGraph<Integer> testGraph;
-	ArrayList<Integer> testValues;
-	int nTestValues = 500;
-	int nTestEdges = 100;
-	//ArrayList<Integer> 
-	@Before public void initialize() {
-	      testGraph = new SimpleAdjacencyListGraph<Integer>();
-	      testValues = new ArrayList<Integer> ();
-	      for(int i = 0 ; i < nTestValues ; i++) {
-	    	  testValues.add(i);
-	      }
-	}
+	AbstractAdjscencyListGraph<V,E> testGraph = new AbstractAdjacencyListGraph<V,E>();
+	
+	 @Before 
+	 public void initialize() {
+	       
+	    }
 
 	@Test
 	public void testAddVertex() {
@@ -68,6 +62,11 @@ public class SimpleAdjacencyListGraphTest {
 	}
 
 	@Test
+	public void testCreateEdge() {
+		fail("Not yet implemented");
+	}
+
+	@Test
 	public void testGetOutgoingVertices() {
 		fail("Not yet implemented");
 	}
@@ -86,5 +85,8 @@ public class SimpleAdjacencyListGraphTest {
 	public void testGetIncomingEdges() {
 		fail("Not yet implemented");
 	}
+	
+	public class ConcreteAdjacencyListGraph<V>
+	
 
 }
