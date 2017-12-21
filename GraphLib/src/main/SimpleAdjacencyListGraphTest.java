@@ -24,12 +24,16 @@ public class SimpleAdjacencyListGraphTest {
 
 	@Test
 	public void testAddVertex() {
-		
+		SimpleAdjacencyListGraph<Integer> graph = new SimpleAdjacencyListGraph<Integer>();
+		graph.addVertex(testValues.get(0));
+		assertTrue(graph.getVertices().contains(0));
+		assertTrue(graph.getVertices().size()==1);
 	}
 
 	@Test
 	public void testAddEdgeE() {
-		fail("Not yet implemented");
+		SimpleAdjacencyListGraph<Integer> graph = new SimpleAdjacencyListGraph<Integer>();
+		
 	}
 
 	@Test
