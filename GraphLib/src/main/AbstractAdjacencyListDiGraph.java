@@ -23,6 +23,17 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 			edges.remove(edge);
 		}
 	}
+	
+	// Override is necessary to remove incoming edges in DiGraph implementations 
+	@Override 
+	public void removeVertex(V vertex) {
+		if(graph.containsKey(vertex)) {
+			Set<E> incomingEdges = this.getIncomingEdges(vertex);
+			for()
+			edges.removeAll(graph.get(vertex));	
+			graph.remove(vertex);
+		}
+	}
 
 	@Override
 	public Set<V> getOutgoingVertices(V vertex) {
