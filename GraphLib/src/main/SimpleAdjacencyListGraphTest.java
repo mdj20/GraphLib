@@ -24,7 +24,7 @@ public class SimpleAdjacencyListGraphTest {
 
 	@Test
 	public void testAddVertex() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class SimpleAdjacencyListGraphTest {
 	}
 	
 	
-	// method will return a vertex
+	// method provides a simple procedure for determining the vertices a edge will connect
 	private int getEdgeVertex(ArrayList<Integer> testValues, int edge, int skip, boolean source){
 		int index = testValues.size()%(edge*skip);
 		int ret = 0;
