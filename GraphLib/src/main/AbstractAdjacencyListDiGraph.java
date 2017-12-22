@@ -29,9 +29,10 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 	public void removeVertex(V vertex) {
 		if(graph.containsKey(vertex)) {
 			Set<E> incomingEdges = this.getIncomingEdges(vertex);
-			for()
-			edges.removeAll(graph.get(vertex));	
-			graph.remove(vertex);
+			for(E e : incomingEdges){
+				removeEdge(e);
+			}
+			super.removeVertex(vertex);
 		}
 	}
 
