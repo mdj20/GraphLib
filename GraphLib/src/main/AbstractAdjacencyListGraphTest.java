@@ -9,7 +9,7 @@ import interfaces.Edge;
 
 abstract public class AbstractAdjacencyListGraphTest<V,E extends Edge<V>> {
 	
-	AbstractAdjscencyListGraph<V,E> testGraph = new AbstractAdjacencyListGraph<V,E>();
+	//AbstractAdjscencyListGraph<V,E> testGraph = new AbstractAdjacencyListGraph<V,E>();
 	
 	 @Before 
 	 public void initialize() {
@@ -86,7 +86,7 @@ abstract public class AbstractAdjacencyListGraphTest<V,E extends Edge<V>> {
 		fail("Not yet implemented");
 	}
 	
-	public class ConcreteAdjacencyListGraph<V>
+	
 	
 
 }

@@ -8,6 +8,8 @@ import interfaces.Edge;
 
 public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V>> extends AbstractAdjacencyListGraph<V,E> implements DiGraph<V,E> {
 
+	
+	
 	@Override
 	public void addEdge(E edge) {
 		if (checkVertices(edge)) {
@@ -29,10 +31,8 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 	public void removeVertex(V vertex) {
 		if(graph.containsKey(vertex)) {
 			Set<E> incomingEdges = this.getIncomingEdges(vertex);
-			for(E e : incomingEdges){
-				removeEdge(e);
-			}
-			super.removeVertex(vertex);
+			edges.removeAll(graph.get(vertex));	
+			graph.remove(vertex);
 		}
 	}
 
@@ -50,7 +50,7 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 	@Override
 	public Set<V> getIncomingVertices(V vertex) {
 		HashSet<V> ret = new HashSet<V>();
-		if(graph.containsKey(vertex)) {
+		if( graph.containsKey(vertex) ) {
 			for(DirectionalEdge<V> d: edges){
 				if(vertex.equals(d.getSink())) {
 					ret.add(d.getSource());
@@ -66,7 +66,7 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 			return graph.get(vertex);
 		}
 		else 
-			return null;
+			return new HashSet<E>();
 	}
 
 	@Override

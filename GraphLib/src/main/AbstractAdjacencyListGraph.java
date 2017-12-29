@@ -9,12 +9,15 @@ import interfaces.Edge;
 import interfaces.Graph;
 
 public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements Graph<V,E>{
+	
 	protected HashMap<V, HashSet<E>> graph;
 	protected HashSet<E> edges;
+	protected HashSet<E> edgeNullObject;
 	
 	AbstractAdjacencyListGraph(){
 		graph = new HashMap<V,HashSet<E>>();
 		edges= new HashSet<E>();
+		edgeNullObject = new HashSet<E>();
 	}
 
 	@Override
