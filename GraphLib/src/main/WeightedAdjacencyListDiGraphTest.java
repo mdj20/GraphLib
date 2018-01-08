@@ -22,7 +22,6 @@ public class WeightedAdjacencyListDiGraphTest {
 		testGraph.addVertex(0);  
 		testGraph.addVertex(1);
 		testGraph.addEdge(0,1,1);
-		
 		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSet =  testGraph.getEdges();
 		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSetAdjacent0 =  testGraph.getConnectingEdges(0);
 		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSetAdjacent1 =  testGraph.getConnectingEdges(1);
@@ -38,7 +37,6 @@ public class WeightedAdjacencyListDiGraphTest {
 		testGraph.addVertex(0);  
 		testGraph.addVertex(1);
 		testGraph.addEdge(new SimpleWeightedDirectionalEdge<Integer,Integer>(0,1,1));
-		
 		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSet =  testGraph.getEdges();
 		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSetAdjacent0 =  testGraph.getConnectingEdges(0);
 		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSetAdjacent1 =  testGraph.getConnectingEdges(1);
