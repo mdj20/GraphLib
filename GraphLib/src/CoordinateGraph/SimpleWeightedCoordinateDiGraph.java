@@ -83,6 +83,7 @@ public class SimpleWeightedCoordinateDiGraph<V, W> extends WeightedAdjacencyList
 
 	@Override
 	public Set<V> getAdjacentVertices(int x, int y) {
+		
 		return null;
 	}
 
