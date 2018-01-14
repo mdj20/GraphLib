@@ -15,8 +15,8 @@ import interfaces.Edge;
 import interfaces.Graph;
 import main.SimpleAdjacencyListGraph;
 import main.WeightedAdjacencyListDiGraph;
-import test.FastGraphBuilder;
-import test.UnivAvengersGraphData;
+import testutilities.FastGraphBuilder;
+import testutilities.UnivAvengersGraphData;
 
 public class DepthFirstSearch {
 	public static <V, E extends Edge<V>> List<V> DFS(Graph<V,E> graph, V source, V sink) {

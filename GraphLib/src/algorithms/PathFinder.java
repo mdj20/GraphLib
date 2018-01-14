@@ -14,7 +14,7 @@ import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
 import main.WeightedAdjacencyListGraph;
-import test.FastGraphBuilder;
+import testutilities.FastGraphBuilder;
 
 public class PathFinder {
 

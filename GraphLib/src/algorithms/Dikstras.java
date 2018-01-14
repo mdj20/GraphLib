@@ -12,8 +12,8 @@ import java.util.Set;
 import interfaces.WeightedDirectionalEdge;
 import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
+import testutilities.FastGraphBuilder;
 import interfaces.WeightedEdge;
-import test.FastGraphBuilder;
 
 public class Dikstras {
 	
@@ -195,8 +195,6 @@ public class Dikstras {
 			this.val = val;
 			this.edge = edge;
 		}
-		
-		
 
 		@Override
 		public int compareTo(VertexVal<V,W> o) {

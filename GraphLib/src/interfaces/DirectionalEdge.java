@@ -1,5 +1,3 @@
 package interfaces;
 
-public interface DirectionalEdge<V> extends Edge<V>, Directional<V>{
-
-}
+public interface DirectionalEdge<V> extends Edge<V>, Directional<V>{}

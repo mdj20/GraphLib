@@ -6,7 +6,7 @@ import java.util.Random;
 import algorithms.PathFinder;
 import interfaces.WeightedEdge;
 import main.WeightedAdjacencyListGraph;
-import test.FastGraphBuilder;
+import testutilities.FastGraphBuilder;
 
 public class PathfinderTest {
 

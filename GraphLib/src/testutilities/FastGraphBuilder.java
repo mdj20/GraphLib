@@ -1,4 +1,4 @@
-package test;
+package testutilities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,26 +13,30 @@ import main.WeightedAdjacencyListDiGraph;
 import main.WeightedAdjacencyListGraph;
 
 /*
- * this class is a testing builder of graphs 
+ * testing class, graph builder. 
  */ 
 
 public class FastGraphBuilder {
 
-	public final static Character VERTEX_CHARS[]  = {'A','B','C','D','E','F','G','H'};
-	public final static Character SOURCE[]  = {'A','A','A','B','C','D','D','E','F','G','H','H'};
-	public final static Character SINK[] =  {'B','E','D','E','E','H','G','F','C','H','E','F'};
-	public final static Integer WEIGHTS[] = { 4,  7,  2,  2,  4,  4,  1,  2,  1,  2,  5,  1 };
 	
 	public static WeightedAdjacencyListDiGraph<Character,Integer> getWeightedDiGraph(){
-		return buildWeightedDiGraph(VERTEX_CHARS,SOURCE,SINK,WEIGHTS);
+		return getWeightedDiGraph(TestGraphData.TestGraph0);
 	}
 	public static WeightedAdjacencyListGraph<Character,Integer> getWeightedGraph(){
-		return buildWeightedGraph(VERTEX_CHARS,SOURCE,SINK,WEIGHTS);
+		return getWeightedGraph(TestGraphData.TestGraph0);
 	}
+	public static WeightedAdjacencyListDiGraph<Character,Integer> getWeightedDiGraph(TestGraphData testGraphData){
+		return buildWeightedDiGraph(testGraphData.getVerticies(),testGraphData.getSource(),testGraphData.getSink(),testGraphData.getWeights());
+	}
+	public static WeightedAdjacencyListGraph<Character,Integer> getWeightedGraph(TestGraphData testGraphData){
+		return buildWeightedGraph(testGraphData.getVerticies(),testGraphData.getSource(),testGraphData.getSink(),testGraphData.getWeights());
+	}
+
+	
 
 	public static <V,W extends Number & Comparable<W>> WeightedAdjacencyListDiGraph<V,W> buildWeightedDiGraph(V vertex[], V edgeS[], V edgeE[], W weights[]){
 		if(edgeS.length != edgeS.length && edgeS.length != weights.length) {
-			throw new IllegalArgumentException("Lengths of edge arrays, must equal");
+			throw new IllegalArgumentException("Lengths of edge and weight arrays, must equal");
 		}
 		WeightedAdjacencyListDiGraph<V,W> graph = new WeightedAdjacencyListDiGraph<>();
 		for(V c: vertex) {
@@ -41,7 +45,6 @@ public class FastGraphBuilder {
 		for(int i = 0 ; i < weights.length ; i++) {
 			graph.addEdge(edgeS[i], edgeE[i], weights[i]);
 		}
-
 		return graph;
 	}
 	

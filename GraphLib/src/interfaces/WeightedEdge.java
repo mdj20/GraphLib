@@ -1,5 +1,3 @@
 package interfaces;
 
-public interface WeightedEdge<V, W> extends Weighted<W>, Edge<V> {
-
-}
+public interface WeightedEdge<V, W> extends Weighted<W>, Edge<V> {}
