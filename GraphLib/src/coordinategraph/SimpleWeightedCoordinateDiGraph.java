@@ -1,4 +1,4 @@
-package CoordinateGraph;
+package coordinategraph;
 
 import java.util.Collection;
 import java.util.NavigableMap;
@@ -17,15 +17,25 @@ public class SimpleWeightedCoordinateDiGraph<V, W> extends WeightedAdjacencyList
 	
 	private static int xLimit =10; // xLimit will 
 	private static int yLimit =10; // yLimit will
+	private static final int X_LIMIT_DEFAULT = 50;
+	private static final int Y_LIMIT_DEFAULT = 50;
+	
 	
 	public SimpleWeightedCoordinateDiGraph(int x, int y) { // Constructor allows for initial 
+		if(x<1||y<1) {
+			throw new IllegalArgumentException("initial X and Y dimensions must be positive");
+		}
 		xLimit = x; 
 		yLimit = y;
 		extensibleMatrix = new ExtensibleMatrix<V>();
 	}
 	
+	public SimpleWeightedCoordinateDiGraph() {
+		this(X_LIMIT_DEFAULT,Y_LIMIT_DEFAULT);
+	}
 	
-	ExtensibleMatrix<V> extensibleMatrix ;
+	
+	private ExtensibleMatrix<V> extensibleMatrix ;
 
 	@Override
 	public V put(Integer k1, Integer k2, V v) {
@@ -83,8 +93,8 @@ public class SimpleWeightedCoordinateDiGraph<V, W> extends WeightedAdjacencyList
 
 	@Override
 	public Set<V> getAdjacentVertices(int x, int y) {
-		
-		return null;
+		V vFromMatrix = extensibleMatrix.get(x, y);
+		return super.getAdjacentVertices(vFromMatrix);
 	}
 
 	@Override
@@ -95,26 +105,26 @@ public class SimpleWeightedCoordinateDiGraph<V, W> extends WeightedAdjacencyList
 
 	@Override
 	public Set<V> getOutgoingVertices(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+		V vFromMatrix = extensibleMatrix.get(x, y);
+		return super.getOutgoingVertices(vFromMatrix);
 	}
 
 	@Override
 	public Set<V> getIncomingVertices(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+		V vFromMatrix = extensibleMatrix.get(x, y);
+		return super.getIncomingVertices(vFromMatrix);
 	}
 
 	@Override
 	public Set<WeightedDirectionalEdge<V, W>> getOutgoingEdges(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+		V vFromMatrix = extensibleMatrix.get(x, y);
+		return super.getOutgoingEdges(vFromMatrix);
 	}
 
 	@Override
 	public Set<WeightedDirectionalEdge<V, W>> getIncomingEdges(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+		V vFromMatrix = extensibleMatrix.get(x, y);
+		return super.getIncomingEdges(vFromMatrix);
 	}
 
 	
@@ -122,5 +132,11 @@ public class SimpleWeightedCoordinateDiGraph<V, W> extends WeightedAdjacencyList
 		V value = extensibleMatrix.get(k1, k2);
 		return value!=null;
 	}
+	
+	@Override
+	public void addVertex(V vertex) {
+		throw new UnsupportedOperationException("addVertex(V vertex) not supported by CoordinateGraph");
+	}
+	
 	
 }

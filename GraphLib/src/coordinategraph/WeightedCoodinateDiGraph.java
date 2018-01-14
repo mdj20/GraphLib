@@ -1,4 +1,4 @@
-package CoordinateGraph;
+package coordinategraph;
 
 import java.util.Set;
 
