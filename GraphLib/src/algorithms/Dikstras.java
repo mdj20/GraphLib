@@ -13,24 +13,26 @@ import interfaces.WeightedDirectionalEdge;
 import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
 import testutilities.FastGraphBuilder;
+import testutilities.TestGraphData;
 import interfaces.WeightedEdge;
 
 public class Dikstras {
 	
 	public static <V,E extends WeightedEdge<V,W>, W extends Number> List<V> findShortestPath(WeightedGraph<V,E,W> graph, V source, V sink){
-		PriorityQueue<VertexVal<V,W>> pq = new PriorityQueue<VertexVal<V,W>>();
-		HashSet<VertexVal<V,W>> checked = new HashSet<VertexVal<V,W>>();
+		PriorityQueue<VertexVal<V,W>> pq = new PriorityQueue<VertexVal<V,W>>(); 
+		HashSet<V> checked = new HashSet<V>();
 		HashMap<V,VertexVal<V,W>> map = new HashMap<V,VertexVal<V,W>>();
 		VertexVal<V,W> s = addOrUpdate(map,pq,source,0);
-		ArrayList<V> path = new ArrayList<>();
-		//pq.add(s);		
+		ArrayList<V> path = new ArrayList<>();	
 		while(!pq.isEmpty()&&(!pq.peek().vertex.equals(sink))) {
 			VertexVal<V,W> current = pq.poll();
-			checked.add(current);
+			checked.add(current.vertex);
 			for(E de:graph.getOutgoingEdges(current.vertex)) {
-				VertexVal<V,W> temp = addOrUpdate(map,pq,
-						de.getOpposingVertex(current.vertex),
-						de.getWeight().intValue()+current.val, de);	
+				if(!checked.contains(de.getOpposingVertex(current.vertex))){
+					VertexVal<V,W> temp = addOrUpdate(map,pq,
+							de.getOpposingVertex(current.vertex),
+							de.getWeight().intValue()+current.val, de);	
+				}
 			}
 		}
 		if(!pq.isEmpty()&&pq.peek().vertex.equals(sink)) {
@@ -172,11 +174,16 @@ public class Dikstras {
 	// smoketest
 	public static void main(String args[]) {
 		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
-		findShortestPath(graph,'A','F');
-		System.out.println();
-		findShortestPath(graph,'C','A');
-		System.out.println();
+		WeightedAdjacencyListDiGraph<Character,Integer> graph1 = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
 		for(Character c:findShortestPath(graph,'G','C')) {
+			System.out.println(c);
+		};
+		System.out.println();
+		for(WeightedDirectionalEdge<Character,Integer> wde:graph1.getOutgoingEdges('E')){
+			System.out.println(wde.getSource()+" "+wde.getWeight()+" "+wde.getSink());
+		}
+		List<Character> path = findShortestPath(graph1,'C','A');
+		for(Character c:path) {
 			System.out.println(c);
 		};
 	}
