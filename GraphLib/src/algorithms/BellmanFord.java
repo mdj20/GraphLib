@@ -19,18 +19,6 @@ public class BellmanFord {
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		int nVertex = vertices.size();
 		HashMap<V,Integer>  distanceMap = new HashMap<V,Integer>();
-	/*	for( int i = 0 ; i < vertices.size() ; i++ ) {
-			if(vertices.get(i).equals(source)) {
-				V temp = vertices.get(0);
-				vertices.set(0, source);
-				vertices.set(i, temp);
-			}
-		}
-		
-			if()
-		}
-		
-		*/
 		distanceMap.put(source, 0);
 		for(int i = 0 ; i < nVertex-1 ; i++) {
 			for(V v: vertices) {
@@ -49,10 +37,11 @@ public class BellmanFord {
 				}
 			}
 		}
-		
 		return distanceMap;
-	
 	}
+	
+	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<WeightedEdge<V,W>> getPath(WeightedGraph<V,E,W> graph, Map<V,Integer> distanceMap,  )
+	
 	
 	public static void main(String args[]) {
 		// smoke test
