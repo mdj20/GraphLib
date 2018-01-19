@@ -1,5 +1,6 @@
 package algorithms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import interfaces.Edge;
@@ -37,18 +38,36 @@ public class AbstractPath<V, E extends Edge<V>> implements Path<V,E>{
 		return vertexList.get(i);
 	}
 
-	protected V inferSource(List<E> edgeList) {
-		V ret = null;
-		if(edgeList.size()>1) {
-			E firstEdge = edgeList.get(0);
-			V vert0 = firstEdge.getVertex(0);
-			V vert1 = firstEdge.getVertex(1);
-			E nextEdge = edgeList.get(1);
-			List<V> nextVerts = nextEdge.getVertices();
-			if(nextVerts.indexOf(firstEdge.getVertex(0))) 
+	protected List<V> inferVertexList(){
+		ArrayList<V> list = new ArrayList<V>();
+		V temp = source;
+		list.add(source);
+		for(E e:edgeList){
+			list.add(e.getOpposingVertex(temp));
+			temp = e.getOpposingVertex(temp);
 		}
-		
-		
+		if(!list.get(0).equals(source)  || list.get(list.size()-1).equals(sink)){
+			// throw exception depending on caller requirements determined in the future.  
+			list = null;
+		}
+		return list;
+	}
+	
+	// checks if edgeList is a valid path chaining vertices in the proper order.
+	protected boolean checkEdgeListValidity(){
+		boolean ret = true;
+		V temp = source, temp2 = null;
+		for(E e: edgeList){
+			temp2 = e.getOpposingVertex(temp);
+			if(temp2==null){
+				ret = false;
+				break;
+			}
+			else{
+				temp = temp2;
+			}
+		}
+		return ret;
 	}
 	
 }
