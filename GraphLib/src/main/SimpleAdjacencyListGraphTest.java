@@ -13,7 +13,6 @@ public class SimpleAdjacencyListGraphTest {
 	ArrayList<Integer> testValues;
 	int nTestValues = 500;
 	int nTestEdges = 100;
-	//ArrayList<Integer> 
 	@Before public void initialize() {
 	      testGraph = new SimpleAdjacencyListGraph<Integer>();
 	      testValues = new ArrayList<Integer> ();

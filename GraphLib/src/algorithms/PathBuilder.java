@@ -10,10 +10,22 @@ import interfaces.WeightedGraph;
 
 public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 	
-	G g;
+	protected G graph;
+	Path<V,E> path;
 
-	PathBuilder(WeightedGraph<?, ?, ?> graph){
+	public PathBuilder(G graph){
 		
 	}
+	
+	
+	//public addEdge(E edge)
+	
+	
+	public static <G extends Graph<V,E>,V,E extends Edge<V>> PathBuilder<G,V,E> getPathBuilder(G graph){
+		return new PathBuilder<G,V,E>(graph);
+	}
+	
+	//public static <> getWeightedPathBuilder
+	
 	
 }

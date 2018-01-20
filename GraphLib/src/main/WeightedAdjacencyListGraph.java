@@ -5,7 +5,9 @@ import interfaces.WeightedGraph;
 
 public class WeightedAdjacencyListGraph<V, W> extends AbstractAdjacencyListGraph<V,WeightedEdge<V,W>> implements WeightedGraph<V,WeightedEdge<V,W>,W> {
 
-
+	public WeightedAdjacencyListGraph() {
+		super(GraphType.WEIGHTED);
+	}
 
 	@Override
 	public WeightedEdge<V, W> createEdge(V vertex1, V vertex2) {

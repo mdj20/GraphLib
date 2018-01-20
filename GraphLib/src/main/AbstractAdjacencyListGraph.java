@@ -8,13 +8,15 @@ import java.util.Set;
 import interfaces.Edge;
 import interfaces.Graph;
 
-public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements Graph<V,E>{
+public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements Graph<V,E>, GraphParameters{
 	
 	protected HashMap<V, HashSet<E>> graph;
 	protected HashSet<E> edges;
 	protected HashSet<E> edgeNullObject;
+	protected GraphParameters graphParameters;
 	
-	AbstractAdjacencyListGraph(){
+	AbstractAdjacencyListGraph(GraphParameters params){
+		graphParameters = params;
 		graph = new HashMap<V,HashSet<E>>();
 		edges= new HashSet<E>();
 		edgeNullObject = new HashSet<E>();
@@ -125,6 +127,17 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	public Set<E> getIncomingEdges(V vertex) {
 		return getConnectingEdges(vertex);
 	}
+	
+	@Override
+	public boolean isWeighted() {
+		return graphParameters.isWeighted();
+	}
+
+	@Override
+	public boolean isDirected() {
+		return graphParameters.isDirected();
+	}
+	
 	
 }
 

@@ -8,6 +8,10 @@ import interfaces.Edge;
 
 public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V>> extends AbstractAdjacencyListGraph<V,E> implements DiGraph<V,E> {
 
+	AbstractAdjacencyListDiGraph() {
+		super(GraphType.DIRECTED);
+	}
+
 	@Override
 	public void addEdge(E edge) {
 		if (checkVertices(edge)) {
