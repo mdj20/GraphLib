@@ -12,7 +12,7 @@ public class AbstractPath<V, E extends Edge<V>> implements Path<V,E>{
 	protected V source;
 	protected V sink;
 	
-	protected AbstractPath(V source, V sink, List<E> edgeList  ) {
+	protected AbstractPath(V source, V sink, List<E> edgeList ) {
 		this.source = source;
 		this.sink = sink;
 		this.edgeList = edgeList;

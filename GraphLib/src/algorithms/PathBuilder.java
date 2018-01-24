@@ -6,7 +6,11 @@ import java.util.Set;
 
 import interfaces.Edge;
 import interfaces.Graph;
+import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;
+import main.WeightedAdjacencyListDiGraph;
+import testutilities.FastGraphBuilder;
+import testutilities.TestGraphData;
 
 	/*
 	 * Constructs Path Objects, with verification 
@@ -52,8 +56,8 @@ public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 	
 	protected boolean checkEdge(E edge, V edgeSource) {
 		boolean ret = false;
-		Set<E> edges = graph.getOutgoingEdges(edgeSource);
-		if(edges.contains(edge)){
+		Set<E> outEdges = graph.getOutgoingEdges(edgeSource);
+		if(outEdges.contains(edge)){
 			ret = true;
 		}
 		else {
@@ -66,18 +70,49 @@ public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 		boolean ret = false;
 		Set<E> edges = graph.getConnectingEdges(edgeSource);
 		for(E e:edges) {
-			if(e.isReciprical(edge)) 
-			ret=true;
-			break;
+			if (e.isReciprical(edge)) 
+				ret=true;
+				break;
+		}
+		return ret;
+	} 
+	
+	protected boolean checkPath() {
+		boolean ret = true;
+		V current = source, next= null;
+		for(int i = 0 ; i < edgeList.size() ; i++ ) {
+			next = edgeList.get(i).getOpposingVertex(current);
+			if(next==null) {
+				ret = false;
+				break;
+			} 
+			else {
+				current = next;
+			}
 		}
 		return ret;
 	}
 	
+	public Path<V,E> build(){
+		if(checkPath()) {
+			path = new SimplePath<V,E>(source,tail,edgeList);
+		}
+		return path; 
+	}
+	
+	
+	
 	public static <G extends Graph<V,E>,V,E extends Edge<V>> PathBuilder<G,V,E> getPathBuilder(G graph, V source){
 		return new PathBuilder<G,V,E>(graph,source);
 	}
-	
-	//public static <> getWeightedPathBuilder
+
+	// Smoke test
+	public static void main() {
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
+		Dikstras.findShortestPathInt(graph, "A", "C");
+		
+		
+	}
 	
 	
 }

@@ -44,19 +44,30 @@ public class Dikstras {
 			}
 		}
 		ArrayList<V> path = new ArrayList<V>();
+		ArrayList<WeightedEdge<V,W>> edgePath = new ArrayList<WeightedEdge<V,W>>();
 		boolean run = true;
 		System.out.println(!pq.isEmpty()&&pq.peek().vertex.equals(sink));
 		if(!pq.isEmpty()&&pq.peek().vertex.equals(sink)) {
 			VertexVal<V,W,Integer> vv = pq.poll();
 			path.add(vv.vertex);
+			edgePath.add(vv.edge);
 			while(run) {
 				vv = map.get(vv.edge.getOpposingVertex(vv.vertex));
-				if(vv.vertex.equals(source))
+				if(vv.vertex.equals(source)) {
 					run=false;
 					path.add(vv.vertex);
 				}
+				else {	
+					edgePath.add(vv.edge);
+		
+				}
+			}
 		}
 		//return path;
+		
+		for(WeightedEdge<V,W> we: edgePath) {
+			System.out.println("EDGE:"+" "+we.getVertices().get(0)+" "+we.getWeight()+" "+we.getVertices().get(1));
+		}
 		return path;
 	}
 	
