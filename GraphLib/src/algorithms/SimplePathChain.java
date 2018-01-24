@@ -19,6 +19,12 @@ class SimplePathChain<V, E extends Edge<V>, I extends Number & Comparable<I>> im
 	public I getVal() {
 		return val;
 	}
+	
+	public I setValue(I value) {
+		I temp = val;
+		val=value;
+		return temp;
+	}
 
 	SimplePathChain(V vertex, E edge, I intermediate){
 		this.vertex = vertex;

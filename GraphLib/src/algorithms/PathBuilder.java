@@ -108,10 +108,8 @@ public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 
 	// Smoke test
 	public static void main() {
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
-		Dikstras.findShortestPathInt(graph, "A", "C");
-		
-		
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
+		Dikstras.findShortestPathInt(graph, 'A', 'C');
 	}
 	
 	
