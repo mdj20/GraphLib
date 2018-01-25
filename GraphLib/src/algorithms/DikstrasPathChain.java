@@ -15,7 +15,7 @@ import testutilities.TestGraphData;
 
 public class DikstrasPathChain {
 	
-	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<V> findShortestPathInt(G graph, V source, V sink){
+	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source, V sink){
 		// check graph contains source and sink
 		Set<V> vertecies = graph.getVertices();
 		if( !(vertecies.contains(source) && vertecies.contains(sink)) ){
@@ -74,7 +74,7 @@ public class DikstrasPathChain {
 		for(WeightedEdge<V,W> we: edgePath) {
 			System.out.println("EDGE:"+" "+we.getVertices().get(0)+" "+we.getWeight()+" "+we.getVertices().get(1));
 		}
-		return path;
+		return edgePath;
 	}
 	
 	
@@ -123,15 +123,15 @@ public class DikstrasPathChain {
 	public static void main(String args[]) {
 		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
 		WeightedAdjacencyListDiGraph<Character,Integer> graph1 = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
-		for(Character c: findShortestPathInt(graph,'G','C') ) {
+		for(WeightedEdge<Character,Integer> c: findShortestPathInt(graph,'G','C') ) {
 			System.out.println(c);
 		};
 		System.out.println();
 	/*	for(WeightedDirectionalEdge<Character,Integer> wde:graph1.getOutgoingEdges('E')){
 			System.out.println(wde.getSource()+" "+wde.getWeight()+" "+wde.getSink());
 		}*/
-		List<Character> path = findShortestPathInt(graph1,'C','A');
-		for(Character c:path) {
+		List<? extends WeightedEdge<Character,Integer>> path = findShortestPathInt(graph1,'C','A');
+		for(WeightedEdge<Character,Integer> c:path) {
 			System.out.println(c);
 		};
 	}

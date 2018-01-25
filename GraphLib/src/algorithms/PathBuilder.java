@@ -54,6 +54,21 @@ public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 		return ret;
 	}
 	
+	public boolean addEdges(List<E> edges) {
+		int size = edgeList.size();
+		boolean ret = false;
+		for(E e: edges) {
+			ret = this.addEdge(e);
+			if(!ret) {
+				break;
+			}
+		}
+		if( !ret && edgeList.size()>size) {
+			edgeList.subList(size, edgeList.size()).clear();
+		}
+		return ret;
+	}
+	
 	protected boolean checkEdge(E edge, V edgeSource) {
 		boolean ret = false;
 		Set<E> outEdges = graph.getOutgoingEdges(edgeSource);
