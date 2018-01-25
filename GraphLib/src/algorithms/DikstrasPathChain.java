@@ -15,7 +15,7 @@ import testutilities.TestGraphData;
 
 public class DikstrasPathChain {
 	
-	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<V> findShortestPathInt(WeightedGraph<V,E,W> graph, V source, V sink){
+	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<V> findShortestPathInt(G graph, V source, V sink){
 		// check graph contains source and sink
 		Set<V> vertecies = graph.getVertices();
 		if( !(vertecies.contains(source) && vertecies.contains(sink)) ){
@@ -32,8 +32,6 @@ public class DikstrasPathChain {
 			checked.add(current.vertex);  // add vertex to checked set
 			for (E  edge  :graph.getOutgoingEdges(current.vertex)){	// for each outgoing edge 
 				if(!checked.contains(edge.getOpposingVertex(current.vertex))){		// if opposing vertex has not been checked   
-					System.out.println(edge.getOpposingVertex(current.vertex)+" "+(map.get(current.vertex).val + edge.getWeight().intValue())
-							+" "+edge.getWeight()); 
 					addOrUpdate(map,
 								pq,
 								edge.getOpposingVertex(current.vertex),
@@ -42,11 +40,10 @@ public class DikstrasPathChain {
 				}
 			}
 		}
-		ArrayList<V> path = new ArrayList<V>();
-		ArrayList<E> edgePath = new ArrayList<E>();
-		boolean run = true;
-		System.out.println(!pq.isEmpty()&&pq.peek().vertex.equals(sink));
-		if(!pq.isEmpty()&&pq.peek().vertex.equals(sink)) {
+		ArrayList<V> path = new ArrayList<V>();  // vertex path 
+		ArrayList<E> edgePath = new ArrayList<E>(); // edge path
+		boolean run = true;  
+		if(!pq.isEmpty()&&pq.peek().vertex.equals(sink)) {  // 
 			WeightedPathChain<V,E,W,Integer> vv = pq.poll();
 			path.add(vv.vertex);
 			edgePath.add(vv.edge);
@@ -63,6 +60,16 @@ public class DikstrasPathChain {
 			}
 		}
 		//return path;
+		WeightedPathBuilder<G,V,E,W> weightedPathBuilder = new WeightedPathBuilder<G,V,E,W>(graph,source);
+		for(int i = 0; i < edgePath.size(); i++ ) {
+			weightedPathBuilder.addEdge(edgePath.get((edgePath.size()-1)-i));
+		}
+		
+		Path<V,E> builtPath = weightedPathBuilder.build();
+		
+		for(E we:builtPath.getEdgeList()) {
+			System.out.println("EDGEPATH:"+" "+we.getVertices().get(0)+" "+we.getWeight()+" "+we.getVertices().get(1));
+		}
 		
 		for(WeightedEdge<V,W> we: edgePath) {
 			System.out.println("EDGE:"+" "+we.getVertices().get(0)+" "+we.getWeight()+" "+we.getVertices().get(1));
