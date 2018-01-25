@@ -124,12 +124,10 @@ public class DikstrasPathChain {
 		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
 		WeightedAdjacencyListDiGraph<Character,Integer> graph1 = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
 		for(WeightedEdge<Character,Integer> c: findShortestPathInt(graph,'G','C') ) {
-			System.out.println(S);
+			System.out.println(c);
 		};
 		System.out.println();
-	/*	for(WeightedDirectionalEdge<Character,Integer> wde:graph1.getOutgoingEdges('E')){
-			System.out.println(wde.getSource()+" "+wde.getWeight()+" "+wde.getSink());
-		}*/
+	
 		List<? extends WeightedEdge<Character,Integer>> path = findShortestPathInt(graph1,'C','A');
 		for(WeightedEdge<Character,Integer> c:path) {
 			System.out.println(c);
