@@ -2,11 +2,11 @@ package algorithms;
 
 import interfaces.Edge;
 
-class SimplePathChain<V, E extends Edge<V>, I extends Number & Comparable<I>> implements Comparable<SimplePathChain<V,E,I>> {
+class SimplePathChain<V, E extends Edge<V>, I extends Comparable<I>> implements Comparable<SimplePathChain<V,E,I>> {
 	
-	V vertex;
-	E edge;
-	I val;
+	V vertex; // target vertex
+	E edge; // edge that connects vertex with current lowest weight / distance to source
+	I val; // Intermediate value used 
 	
 	public V getVertex() {
 		return vertex;
@@ -14,6 +14,12 @@ class SimplePathChain<V, E extends Edge<V>, I extends Number & Comparable<I>> im
 
 	public E getEdge() {
 		return edge;
+	}
+	
+	public E setEdge(E edge) {
+		E ret = this.edge;
+		this.edge = edge;
+		return ret;
 	}
 
 	public I getVal() {
