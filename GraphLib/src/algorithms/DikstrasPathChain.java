@@ -1,6 +1,7 @@
 package algorithms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +23,6 @@ public class DikstrasPathChain{
 		if( !(vertecies.contains(source) && vertecies.contains(sink)) ){
 			throw new IllegalArgumentException("Graph must contain both source and sink");
 		}
-		
 		
 		PriorityQueue<WeightedPathChain<V,E,W,Integer>> pq = new PriorityQueue<WeightedPathChain<V,E,W,Integer>>(); 
 		HashSet<V> checked = new HashSet<V>();
@@ -75,6 +75,7 @@ public class DikstrasPathChain{
 		for(WeightedEdge<V,W> we: edgePath) {
 			System.out.println("EDGE:"+" "+we.getVertices().get(0)+" "+we.getWeight()+" "+we.getVertices().get(1));
 		}
+		Collections.reverse(edgePath);
 		return edgePath;
 	}
 	

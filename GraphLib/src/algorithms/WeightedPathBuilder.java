@@ -7,4 +7,5 @@ public class WeightedPathBuilder<G extends WeightedGraph<V,E,W>, V, E extends We
 	public WeightedPathBuilder(G graph, V source) {
 		super(graph, source);
 	}
+	
 }

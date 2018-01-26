@@ -9,7 +9,7 @@ import interfaces.WeightedGraph;
 public abstract class AbstractPathFinder<G extends Graph<V,E>,V,E extends Edge<V>> {
 	
 	protected G graph;
-	
+
 	protected AbstractPathFinder(G graph) {
 		this.graph = graph;
 	}
