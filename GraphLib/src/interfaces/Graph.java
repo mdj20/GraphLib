@@ -72,7 +72,7 @@ public interface Graph<V,E extends Edge<V>> {
 	 * Returns a set of vertices that are the sink to and edge that targetVertex is the source. 
 	 * <p>
 	 * NOTE: in a non-directed graph this returns the same value as getAdjacentVertices()
-	 * @param targetVertex the vertex 
+	 * @param targetVertex the object/vertex 
 	 * @return set of vertices that are sink vertices to outgoing edges.
 	 */
 	public Set<V> getOutgoingVertices(V targetVertex);
@@ -81,7 +81,7 @@ public interface Graph<V,E extends Edge<V>> {
 	 * <p>
 	 * 
 	 * NOTE: in a non-directed graph this returns the same value as getAdjacentVertices()
-	 * @param targetVertex the vertex
+	 * @param targetVertex the object/vertex
 	 * @return set of vertices that are sink vertices to incoming edges.
 	 */
 	public Set<V> getIncomingVertices(V targetVertex);
@@ -89,9 +89,18 @@ public interface Graph<V,E extends Edge<V>> {
 	 * Returns a set of all edges that targetVertex is the source of.
 	 * <p>
 	 * NOTE: in a non-directed graph this returns the same value as getAdjacentEdges()
-	 * @param targetVertex the vertex 
-	 * @return set of incoming edges
+	 * @param targetVertex the object/vertex 
+	 * @return set of outgoing edges
 	 */
 	public Set<E> getOutgoingEdges(V targetVertex);
-	public Set<E> getIncomingEdges(V vertex);
+	
+	/**
+	 * 
+	 * Returns a set of all edges that targetVertex is the source of.
+	 * <p>
+	 * NOTE: in a non-directed graph this returns the same value as getAdjacentEdges()
+	 * @param targetVertex the object/vertex
+	 * @return set of incoming edges
+	 */
+	public Set<E> getIncomingEdges(V targetVertex);
 }
