@@ -20,11 +20,12 @@ extends AbstractPathFinder<G, V, E> {
 	
 	// bellmanford int 
 	
+	
 	// bellmanford double
 	
 	// dikstras int 
-	public WeightedPath<V,W> dikstrasIntPath(V source, V sink){
-		WeightedPath<V,W> ret = null;
+	public Path<V,E> dikstrasIntPath(V source, V sink){
+		Path<V,E> ret = null;
 		List<E> edgeList = DikstrasPathChain.findShortestPathInt(super.getGraph(), source, sink);
 		WeightedPathBuilder<G,V,E,W> weightedPathBuilder = new WeightedPathBuilder<G,V,E,W>(graph,source);
 		if(edgeList!=null) {
@@ -37,4 +38,6 @@ extends AbstractPathFinder<G, V, E> {
 	}
 	
 	// dikstras double
+	
+	
 }

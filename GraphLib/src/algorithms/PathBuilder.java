@@ -63,6 +63,8 @@ public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 				break;
 			}
 		}
+		
+		// if there was an error,S remove any edges that were added.
 		if( !ret && edgeList.size()>size) {
 			edgeList.subList(size, edgeList.size()).clear();
 		}
