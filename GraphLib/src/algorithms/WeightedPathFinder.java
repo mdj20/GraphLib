@@ -19,7 +19,18 @@ extends AbstractPathFinder<G, V, E> {
 	
 	
 	// bellmanford int 
-	
+	public Path<V,E> bellmanFordIntPath(V source, V sink){
+		Path<V,E> ret = null;
+		List<E> edgeList = BellmanFord.findShortestPathInt(super.getGraph(), source, sink);
+		WeightedPathBuilder<G,V,E,W> weightedPathBuilder = new WeightedPathBuilder<G,V,E,W>(graph,source);
+		if(edgeList!=null&& !edgeList.isEmpty()) {
+			for(E e: edgeList) {
+				weightedPathBuilder.addEdge(e);
+			}
+		}
+		ret = weightedPathBuilder.build();
+		return ret;
+	}
 	
 	// bellmanford double
 	

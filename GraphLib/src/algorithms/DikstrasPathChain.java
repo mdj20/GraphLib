@@ -61,20 +61,7 @@ public class DikstrasPathChain{
 			}
 		}
 		//return path;
-		WeightedPathBuilder<G,V,E,W> weightedPathBuilder = new WeightedPathBuilder<G,V,E,W>(graph,source);
-		for(int i = 0; i < edgePath.size(); i++ ) {
-			weightedPathBuilder.addEdge(edgePath.get((edgePath.size()-1)-i));
-		}
 		
-		Path<V,E> builtPath = weightedPathBuilder.build();
-		
-		for(E we:builtPath.getEdgeList()) {
-			System.out.println("EDGEPATH:"+" "+we.getVertices().get(0)+" "+we.getWeight()+" "+we.getVertices().get(1));
-		}
-		
-		for(WeightedEdge<V,W> we: edgePath) {
-			System.out.println("EDGE:"+" "+we.getVertices().get(0)+" "+we.getWeight()+" "+we.getVertices().get(1));
-		}
 		Collections.reverse(edgePath);
 		return edgePath;
 	}

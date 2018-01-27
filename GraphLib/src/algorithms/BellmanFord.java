@@ -41,7 +41,7 @@ public class BellmanFord {
 		return distanceMap;
 	}
 	
-	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findPathInt(G graph, V source,V sink){
+	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source,V sink){
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		ArrayList<E> pathEdgeList = new ArrayList<E>(); 
 		int nVertex = vertices.size();
@@ -89,7 +89,7 @@ public class BellmanFord {
 	}
 	
 	
-	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findPathDouble(G graph, V source,V sink){
+	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findSortestPathDouble(G graph, V source,V sink){
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		ArrayList<E> pathEdgeList = new ArrayList<E>(); 
 		int nVertex = vertices.size();
@@ -140,25 +140,7 @@ public class BellmanFord {
 	
 	
 	public static void main(String args[]) {
-		// smoke test
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
-		WeightedAdjacencyListDiGraph<Character,Integer> graph1 = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
-		/*
-		 * Map<Character,Integer> map = findDistancesInt(graph,'A');
-		Map<Character,Integer> map1 = findDistancesInt(graph1,'A');
-		printMap(map);
-		System.out.println();
-		printMap(map1);*/
-		
-		List<WeightedDirectionalEdge<Character, Integer>> list1 = findPathInt(graph,'A','C');
-		for(WeightedDirectionalEdge<Character,Integer> wde: list1){
-			System.out.println(wde.getSource()+" "+wde.getSink()+" W: "+wde.getWeight());
-		}
-		System.out.println();
-		List<WeightedDirectionalEdge<Character, Integer>> dlist1 = findPathDouble(graph,'A','C');
-		for(WeightedDirectionalEdge<Character,Integer> wde: dlist1){
-			System.out.println(wde.getSource()+" "+wde.getSink()+" W: "+wde.getWeight());
-		}
+	
 	
 	}
 	
