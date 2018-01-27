@@ -54,7 +54,10 @@ public class BellmanFord {
 						V opposing = edge.getOpposingVertex(v);
 						if(distanceMap.containsKey(opposing)){
 							if(distanceMap.get(v).getVal()+edge.getWeight().intValue() < distanceMap.get(opposing).getVal()){
-								distanceMap.get(opposing).setValue(distanceMap.get(v).getVal() + edge.getWeight().intValue());
+								
+								WeightedPathChain<V,E,W,Integer> pathChain =distanceMap.get(opposing);
+								pathChain.setValue(distanceMap.get(v).getVal() + edge.getWeight().intValue());
+								pathChain.setEdge(edge);
 							}	
 						}
 						else {
@@ -89,7 +92,7 @@ public class BellmanFord {
 	}
 	
 	
-	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findSortestPathDouble(G graph, V source,V sink){
+	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathDouble(G graph, V source,V sink){
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		ArrayList<E> pathEdgeList = new ArrayList<E>(); 
 		int nVertex = vertices.size();
@@ -102,7 +105,9 @@ public class BellmanFord {
 						V opposing = edge.getOpposingVertex(v);
 						if(distanceMap.containsKey(opposing)){
 							if(distanceMap.get(v).getVal()+edge.getWeight().doubleValue() < distanceMap.get(opposing).getVal()){
-								distanceMap.get(opposing).setValue(distanceMap.get(v).getVal() + edge.getWeight().doubleValue());
+								WeightedPathChain<V,E,W,Double> pathChain = distanceMap.get(opposing);
+								pathChain.setValue(distanceMap.get(v).getVal() + edge.getWeight().doubleValue());
+								pathChain.setEdge(edge);
 							}	
 						}
 						else {

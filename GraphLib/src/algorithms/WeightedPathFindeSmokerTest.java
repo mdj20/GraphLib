@@ -19,8 +19,8 @@ public class WeightedPathFindeSmokerTest {
 	
 	static WeightedAdjacencyListDiGraph<Character, Integer> graph0;
 	static WeightedAdjacencyListDiGraph<Character, Integer> graph1;
-	static int nVertex = 10;
-	static int nEdge = 20;
+	static int nVertex = 25;
+	static int nEdge = 50;
 	static int lowerWeight = 1;
 	static int upperWeight = 15;
 	static Random rando = new Random(System.nanoTime());
@@ -30,7 +30,7 @@ public class WeightedPathFindeSmokerTest {
 		
 		
 		//Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("false.txt", "UTF-8")))
-		PrintWriter pw = new PrintWriter("false.txt", "UTF-8");
+		//PrintWriter pw = new PrintWriter("false.txt", "UTF-8");
 		
 		
 		Class<Character> charclass = Character.class;
@@ -66,7 +66,9 @@ public class WeightedPathFindeSmokerTest {
 		equals = randoDPath.getEdgeList().equals(randoBMPath.getEdgeList());
 		System.out.println(equals);
 		
-		for(int i = 0 ; i < 1000 ; i++){
+		boolean master = true;
+		
+		for(int i = 0 ; i < 10000 ; i++){
 			randograph0 = FastGraphBuilder.buildRandomDiGraph(nVertex, nEdge, lowerWeight, upperWeight);
 			randoPathFinder = WeightedPathFinder.getWeightedPathFinder(randograph0);
 			Character source = 'C', sink = 'A';
@@ -93,16 +95,27 @@ public class WeightedPathFindeSmokerTest {
 			equals = randoDPath.getEdgeList().equals(randoBMPath.getEdgeList());
 			
 			System.out.println(equals);
+			;
 			if(!equals){
-				pw.println(i);
-				
-				printToFile(pw,randograph0,randoDPath,randoBMPath);
+				//pw.println(i);
+				int sumd = 0, sumb = 0;
+				for(WeightedDirectionalEdge<Character,Integer> wde : randoDPath.getEdgeList()){
+					sumd+=wde.getWeight();
+				}
+				for(WeightedDirectionalEdge<Character,Integer> wde : randoBMPath.getEdgeList()){
+					sumb+=wde.getWeight();
+				}
+				master = master && (sumd == sumb);
+				/* commenting out print to file for development purposes.
+				 * printToFile(pw,randograph0,randoDPath,randoBMPath);
+				 */
 			}
 			
 			
 		}
 		
-		pw.close();
+		System.out.println("Master "+master);
+		//pw.close();
 		
 		
 	}

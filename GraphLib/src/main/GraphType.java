@@ -1,7 +1,7 @@
 package main;
 
 public enum GraphType implements GraphParameters {
-	
+	// (weighted,directed)
 	SIMPLE(false,false),
 	WEIGHTED(true,false),
 	DIRECTED(false,true),

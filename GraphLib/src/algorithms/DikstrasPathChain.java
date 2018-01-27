@@ -15,8 +15,7 @@ import testutilities.FastGraphBuilder;
 import testutilities.TestGraphData;
 
 public class DikstrasPathChain{
-	
-	
+
 	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source, V sink){
 		// check graph contains source and sink
 		Set<V> vertecies = graph.getVertices();
@@ -88,7 +87,8 @@ public class DikstrasPathChain{
 		return ret;
 	}
 	
-	private static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>,I extends Comparable<I>> WeightedPathChain<V,E,W,I> addOrUpdate(HashMap<V, WeightedPathChain<V,E,W,I>> discoverMap, PriorityQueue<WeightedPathChain<V,E,W,I>> pq, V vertex, I value){
+	private static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>,I extends Comparable<I>> 
+	WeightedPathChain<V,E,W,I> addOrUpdate(HashMap<V, WeightedPathChain<V,E,W,I>> discoverMap, PriorityQueue<WeightedPathChain<V,E,W,I>> pq, V vertex, I value){
 		WeightedPathChain<V,E,W,I> ret;
 		if(!discoverMap.containsKey(vertex)){
 			discoverMap.put(vertex, new WeightedPathChain<V,E,W,I>(vertex,value));

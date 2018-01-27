@@ -8,6 +8,19 @@ import java.util.Set;
 import interfaces.Edge;
 import interfaces.Graph;
 
+	/**
+	 * @author Matthew D. Jeffreys
+	 * 
+	 * Abstract base class for undirected graph hierarchy.
+	 * <p>
+	 *
+	 *
+	 *
+	 * @param <V> Vertex Type
+	 * @param <E> Edge type extends Edge
+	 */
+
+
 public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements Graph<V,E>, GraphParameters{
 	
 	protected HashMap<V, HashSet<E>> graph;
@@ -15,7 +28,7 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	protected HashSet<E> edgeNullObject;
 	protected GraphParameters graphParameters;
 	
-	AbstractAdjacencyListGraph(GraphParameters params){
+	protected AbstractAdjacencyListGraph(GraphParameters params){
 		graphParameters = params;
 		graph = new HashMap<V,HashSet<E>>();
 		edges= new HashSet<E>();
@@ -87,8 +100,16 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 		}
 	}
 
-	public abstract E createEdge(V vertex1, V vertex2);
+	
+	/** 
+	 * @param vertex1 first connecting vertex
+	 * @param vertex2 second connecting vertex
+	 * @return E extends Edge
+	 */
+	
+	protected abstract E createEdge(V vertex1, V vertex2);
 
+	
 	// checks if an edge or it's reciprocal exits.
 	private boolean edgeExist(E edge) {
 		Edge<V> reciprical = new SimpleEdge<V>(edge.getVertices().get(1),edge.getVertices().get(0));
@@ -108,6 +129,7 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 		return graph.get(vertex).remove(edge);
 	}
 
+	
 	@Override
 	public Set<V> getOutgoingVertices(V vertex) {
 		return getAdjacentVertices(vertex);
