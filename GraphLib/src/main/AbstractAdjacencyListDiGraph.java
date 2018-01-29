@@ -6,6 +6,15 @@ import interfaces.DiGraph;
 import interfaces.DirectionalEdge;
 import interfaces.Edge;
 
+/**Abstract base class used in the DiGraph object hierarchy.
+ * <p>
+ * 
+ * @author Matthew D. Jeffreys
+ * 
+ * @param <V> Vertex type
+ * @param <E> Edge type
+ */
+
 public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V>> extends AbstractAdjacencyListGraph<V,E> implements DiGraph<V,E> {
 
 	AbstractAdjacencyListDiGraph() {
@@ -19,6 +28,7 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 			edges.add(edge);
 		}
 	}
+	
 	
 	@Override
 	public void removeEdge(E edge) {

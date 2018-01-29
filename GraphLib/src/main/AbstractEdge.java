@@ -4,6 +4,14 @@ import java.util.List;
 
 import interfaces.Edge;
 
+/**
+ * @author Matthew D. Jeffreys 
+ * 
+ *
+ * @param <V> Vertex type
+ */
+
+
 public abstract class AbstractEdge<V> implements Edge<V> {
 	ArrayList<V> v = new ArrayList<V>(2);
 	AbstractEdge(V v0, V v1){

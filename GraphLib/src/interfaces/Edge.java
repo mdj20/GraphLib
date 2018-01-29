@@ -3,9 +3,9 @@ import java.util.List;
 
 /**
  * 
- * @author Matthew Jeffreys
+ * @author Matthew D. Jeffreys
  *
- * @param <V> Type of vertex that the edge connects
+ * @param <V> Type of vertex that the edge connects.
  */
 
 public interface Edge<V> {

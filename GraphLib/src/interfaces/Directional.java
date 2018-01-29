@@ -1,6 +1,6 @@
 package interfaces;
 
-/** class that connects 2 objects (V) designating one as the source and one as the sink. 
+/** Class that connects 2 objects (V) designating one as the source and one as the sink. 
  *  
  * @author Matthew D. Jeffreys
  *
