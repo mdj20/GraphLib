@@ -8,6 +8,10 @@ import java.util.Set;
 
 import interfaces.Edge;
 import interfaces.Graph;
+import interfaces.WeightedGraph;
+import main.WeightedAdjacencyListDiGraph;
+import testutilities.FastGraphBuilder;
+import testutilities.TestGraphData;
 
 public class DepthFirst {
 
@@ -15,14 +19,18 @@ public class DepthFirst {
 		List<E> ret = new ArrayList<E>();
 		if(graph.getVertices().contains(source)&&graph.getVertices().contains(sink)) {
 		LinkedList<SimplePathChain<V,E,?>> pathChain = new LinkedList<SimplePathChain<V,E,?>>();
-		
+		HashSet<V> checked = new HashSet<V>();
+		pathChain.add(new SimplePathChain<V,E,Integer>(source,null,null));
+		if(DepthFirstRecursive(graph,source,sink,pathChain,checked));
+			System.out.println("Success!");
 		
 		}
 		return ret;
 	}
 	
+	
 	private static <V,E extends Edge<V>> boolean 
-	DepthfirstRecursive(Graph<V,E> graph, V source, V sink, LinkedList<SimplePathChain<V,E,?>> pathChain, HashSet<V> checked ) {
+	DepthFirstRecursive(Graph<V,E> graph, V source, V sink, LinkedList<SimplePathChain<V,E,?>> pathChain, HashSet<V> checked ) {
 		boolean ret = false;
 		if(pathChain.peekLast()!=null) {
 			V current =  pathChain.peekLast().vertex;
@@ -32,12 +40,12 @@ public class DepthFirst {
 				if(!checked.contains(e.getOpposingVertex(current))) {
 					if(e.getOpposingVertex(current).equals(sink)) {
 						ret = true; 
-						pathChain.addLast(new SimplePathChain<V,E,Integer>(e.getOpposingVertex(current),e,null));
+						pathChain.addLast(new SimplePathChain<V,E,Integer>(e.getOpposingVertex(current),e,null)); // Note integer isn't used for anything in this context
 						break;
 					}
 					else {
 						pathChain.addLast(new SimplePathChain<V,E,Integer>(e.getOpposingVertex(current),e,null));
-						if(DepthfirstRecursive(graph,source,sink,pathChain,checked)) {
+						if(DepthFirstRecursive(graph,source,sink,pathChain,checked)) {
 							ret = true;
 							break;
 						}
@@ -50,5 +58,13 @@ public class DepthFirst {
 			checked.remove(current);
 		}
 		return ret;	
+	}
+	
+	
+	private static void main(String args[]){
+		// smoke test
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
+		depthFirstSearch(graph,'A','C');
+		
 	}
 }
