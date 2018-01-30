@@ -3,9 +3,9 @@ import java.util.List;
 
 /**
  * 
- * @author Matthew Jeffreys
+ * @author Matthew D. Jeffreys
  *
- * @param <V> Type of vertex that the edge connects
+ * @param <V> Type of vertex that the edge connects.
  */
 
 public interface Edge<V> {
@@ -42,8 +42,8 @@ public interface Edge<V> {
 	 * Used to determine edge equivalence in an undirected graph.
 	 * e.g. edge0 connects A->B, if edge1 B->A is passed to isReciprical method it will return true, 
 	 * this holds true even if the edges are directed. 
-	 * @param edge reference to edge who's reciprocity is to be determined 
-	 * @return 
+	 * @param edge reference to edge who's reciprocity is to be determined.
+	 * @return true if passed edge is reciprocal of object edge.
 	 */
 	public boolean isReciprical(Edge<V> edge);
 }

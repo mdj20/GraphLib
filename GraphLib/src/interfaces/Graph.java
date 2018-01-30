@@ -3,7 +3,7 @@ import java.util.Set;
 
 /**
  * 
- * @author Matthew Jeffreys 
+ * @author Matthew D. Jeffreys 
  *
  * @param <V> Vertex of graph
  * @param <E> Type of edge must extend Edge<V>

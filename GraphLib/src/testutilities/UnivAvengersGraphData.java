@@ -33,19 +33,16 @@ public class UnivAvengersGraphData {
 		return file;	
 	}
 	
-	private static List<Edge<Integer>> chomp(BufferedReader breader) throws IOException {
+	private static List<Edge<Integer>> chomp(BufferedReader bReader) throws IOException {
 	
 		LinkedList<Edge<Integer>> edgeList = new LinkedList<>();
 		String line;
-		while((line=breader.readLine())!=null) {
+		while((line=bReader.readLine())!=null) {
 			if(line.charAt(0)==edgeLinePrefix) {
-
 				String splitLine[] =line.split(" ");
 				edgeList.add(new SimpleEdge<Integer>(Integer.valueOf(splitLine[1]),Integer.valueOf(splitLine[2])));
 			}
 		}
-		
-		
 		return edgeList;
 	}
 	

@@ -3,6 +3,16 @@ import interfaces.Directional;
 import interfaces.DirectionalEdge;
 import interfaces.Edge;
 
+/**
+ * Standard implementation of a directional edge.
+ * 
+ * 
+ * @author Matthew D. Jeffreys
+ * @param <V> Vertex type
+ * 
+ * 
+ */
+
 public class SimpleDirectionalEdge<V> extends AbstractEdge<V> implements DirectionalEdge<V>, Edge<V> {
 
 	SimpleDirectionalEdge(V source, V sink) {
