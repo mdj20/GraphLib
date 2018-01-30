@@ -86,7 +86,6 @@ public class BellmanFord {
 		}
 	
 		// reverse edgeList
-		
 		Collections.reverse(pathEdgeList);
 		return pathEdgeList;
 	}
@@ -140,20 +139,5 @@ public class BellmanFord {
 		Collections.reverse(pathEdgeList);
 		return pathEdgeList;
 	}
-	
-	//public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<WeightedEdge<V,W>> getPath(WeightedGraph<V,E,W> graph, Map<V,Integer> distanceMap,  )
-	
-	
-	public static void main(String args[]) {
-	
-	
-	}
-	
-	private static void printMap(Map<Character,Integer> map) {
-		for(Character c : map.keySet()) {
-			System.out.println(c+" "+map.get(c));
-		}
-	}
-	
 	
 }

@@ -50,7 +50,7 @@ extends AbstractPathFinder<G, V, E> {
 	// dikstras int 
 	public Path<V,E> dikstrasIntPath(V source, V sink){
 		Path<V,E> ret = null;
-		List<E> edgeList = DikstrasPathChain.findShortestPathInt(super.getGraph(), source, sink);
+		List<E> edgeList = Dikstras.findShortestPathInt(super.getGraph(), source, sink);
 		WeightedPathBuilder<G,V,E,W> weightedPathBuilder = new WeightedPathBuilder<G,V,E,W>(graph,source);
 		if(edgeList!=null) {
 			for(E e: edgeList) {
