@@ -5,7 +5,7 @@ import java.util.List;
 
 import interfaces.Edge;
 
-public class AbstractPath<V, E extends Edge<V>> implements Path<V,E>{
+public abstract class AbstractPath<V, E extends Edge<V>> implements Path<V,E>{
 	
 	protected List<E> edgeList;
 	protected List<V> vertexList;

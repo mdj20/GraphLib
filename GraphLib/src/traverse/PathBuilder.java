@@ -13,6 +13,15 @@ import testutilities.FastGraphBuilder;
 import testutilities.TestGraphData;
 import traverse.algorithm.Dikstras;
 
+/**
+ * 
+ * @author Matthew
+ *
+ * @param <G> Type of Graph
+ * @param <V> Type of Vertex
+ * @param <E> Type of Edge
+ */
+
 	/*
 	 * Constructs Path Objects, with verification 
 	 */

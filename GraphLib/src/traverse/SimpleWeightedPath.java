@@ -2,8 +2,15 @@ package traverse;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import interfaces.WeightedEdge;
+
+/**
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ * @param <V> Vertex type.
+ * @param <W> Weight type.
+ */
 
 public class SimpleWeightedPath<V, W> extends SimplePath<V,WeightedEdge<V,W>> implements WeightedPath<V,W> {
 	public SimpleWeightedPath(V source, V sink, List<WeightedEdge<V, W>> edgeList) {

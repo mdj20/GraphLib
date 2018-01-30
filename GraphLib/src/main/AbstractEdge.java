@@ -5,6 +5,9 @@ import java.util.List;
 import interfaces.Edge;
 
 /**
+ * Abstract Base class defines the behavior of Edge.
+ * <p>
+ * 
  * @author Matthew D. Jeffreys 
  * 
  *

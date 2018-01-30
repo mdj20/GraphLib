@@ -7,6 +7,16 @@ import interfaces.WeightedGraph;
 import traverse.algorithm.BellmanFord;
 import traverse.algorithm.Dikstras;
 
+/**
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ * @param <G> Graph type.
+ * @param <E> Edge type.
+ * @param <V> Vertex type.
+ * @param <W> Weight type.
+ */
+
 public class WeightedPathFinder<G extends WeightedGraph<V,E,W>, E extends WeightedEdge<V,W>, V, W extends Number & Comparable<W>>
 extends AbstractPathFinder<G, V, E> {
 	

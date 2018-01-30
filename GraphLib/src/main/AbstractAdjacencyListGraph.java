@@ -102,6 +102,9 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 
 	
 	/** 
+	 * Factory method must be overridden in any graph implementing class that inherits from AbstractAdjacencyListGraph.java
+	 * <p>
+	 * Method defines and constructs the type of edge connecting the edges within the graph. i.e. a directed graph would overide and return an Object of DirectionalEdge type.  
 	 * @param vertex1 first connecting vertex
 	 * @param vertex2 second connecting vertex
 	 * @return E extends Edge
