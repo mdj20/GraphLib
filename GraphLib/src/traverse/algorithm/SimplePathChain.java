@@ -1,4 +1,4 @@
-package traverse;
+package traverse.algorithm;
 
 import interfaces.Edge;
 
