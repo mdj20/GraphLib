@@ -61,9 +61,10 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	public void removeVertex(V vertex) {
 		if(graph.containsKey(vertex)) {
 			edges.removeAll(graph.get(vertex));	
-			Set<E> connectingEdges = this.getConnectingEdges(vertex);
+			Set<E> connectingEdges = new HashSet<E>(this.getConnectingEdges(vertex));
 			for(E e: connectingEdges) {
-				removeEdge(e);
+				removeEdgeFromGraph(e.getVertices().get(0),e);
+				removeEdgeFromGraph(e.getVertices().get(1),e);
 			}
 		
 			graph.remove(vertex);

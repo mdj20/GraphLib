@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
@@ -17,20 +18,17 @@ import testutilities.TestGraphData;
 
 public class WeightedAdjacencyListGraphTest {
 
-	@Test
-	public void testCreateEdgeVV() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>(); 
-		HashSet<Character> refrence = new HashSet<Character>();
-	}
+
 
 	@Test
 	public void testAddEdgeVVW() {
 		int nEdge = 5;
 		Random rando = new Random(System.nanoTime());
+		
+		// storage of the 
 		ArrayList<Character> sourceList = new ArrayList<Character>();
 		ArrayList<Character> sinkList = new ArrayList<Character>();
 		ArrayList<Integer> weightList = new ArrayList<Integer>();
-		Set<WeightedEdge<Character,Integer>> edgeSetBuild = new HashSet<WeightedEdge<Character,Integer>>();
 		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(10, 0, 0, 0);
 		ArrayList<Character> verts = new ArrayList<Character>(graph.getVertices());
 		Character source = null , sink = null;
@@ -55,17 +53,11 @@ public class WeightedAdjacencyListGraphTest {
 			for(WeightedEdge<Character,Integer> wde: edges) {
 				if(wde.getVertex(0).equals(sourceList.get(i)) && wde.getVertex(1).equals(sinkList.get(i)) ) {
 					assertTrue(	wde.getWeight()==weightList.get(i));
-					sourceList.remove(i);
-					sinkList.remove(i);
-					weightList.remove(i);
 					checked++;
 					break;
 				}
 				else if(wde.getVertex(1).equals(sourceList.get(i)) && wde.getVertex(0).equals(sinkList.get(i))) {
 					assertTrue(	wde.getWeight()==weightList.get(i));
-					sourceList.remove(i);
-					sinkList.remove(i);
-					weightList.remove(i);
 					checked++;
 					break;
 				}
@@ -99,7 +91,7 @@ public class WeightedAdjacencyListGraphTest {
 
 	@Test
 	public void testAddEdgeE() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -168,47 +160,131 @@ public class WeightedAdjacencyListGraphTest {
 
 	@Test
 	public void testGetAdjacentVertices() {
-		fail("Not yet implemented");
+		int nVert = 25;
+		int nEdge = 35;
+		int lowerW = 1;
+		int upperW = 15;
+		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		HashMap<Character,HashSet<Character>> map = new HashMap<Character,HashSet<Character>>();
+		for(Character c: graph.getVertices()) {
+			map.put(c, new HashSet<Character>(graph.getAdjacentVertices(c)));
+		}
+		
+		for(Character c: graph.getVertices()) {
+			for(Character c2 : map.get(c)) {
+				assertTrue(graph.getAdjacentVertices(c2).contains(c));
+			}
+		}
 	}
 
 	@Test
 	public void testGetConnectingEdges() {
-		fail("Not yet implemented");
+		int nVert = 25;
+		int nEdge = 35;
+		int lowerW = 1;
+		int upperW = 15;
+		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		HashMap<Character,HashSet<WeightedEdge<Character,Integer>>> map = new HashMap<Character,HashSet<WeightedEdge<Character,Integer>>>();
+		for(Character c: graph.getVertices()) {
+			map.put(c, new HashSet<WeightedEdge<Character,Integer>>(graph.getConnectingEdges(c)));
+		}
+		
+		for(Character c: graph.getVertices()) {
+			for(WeightedEdge<Character,Integer> we : map.get(c)) {
+				assertTrue(graph.getAdjacentVertices(we.getOpposingVertex(c)).contains(c));
+			}
+		}
 	}
 
-	@Test
-	public void testAddEdgeVV() {
-		fail("Not yet implemented");
-	}
+
 
 	@Test
 	public void testGetOutgoingVertices() {
-		fail("Not yet implemented");
+		int nVert = 25;
+		int nEdge = 35;
+		int lowerW = 1;
+		int upperW = 15;
+		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		HashMap<Character,HashSet<Character>> map = new HashMap<Character,HashSet<Character>>();
+		for(Character c: graph.getVertices()) {
+			map.put(c, new HashSet<Character>(graph.getOutgoingVertices(c)));
+		}
+		
+		for(Character c: graph.getVertices()) {
+			for(Character c2 : map.get(c)) {
+				assertTrue(graph.getOutgoingVertices(c2).contains(c));
+			}
+		}
 	}
 
 	@Test
 	public void testGetIncomingVertices() {
-		fail("Not yet implemented");
+		int nVert = 25;
+		int nEdge = 35;
+		int lowerW = 1;
+		int upperW = 15;
+		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		HashMap<Character,HashSet<Character>> map = new HashMap<Character,HashSet<Character>>();
+		for(Character c: graph.getVertices()) {
+			map.put(c, new HashSet<Character>(graph.getIncomingVertices(c)));
+		}
+		
+		for(Character c: graph.getVertices()) {
+			for(Character c2 : map.get(c)) {
+				assertTrue(graph.getIncomingVertices(c2).contains(c));
+			}
+		}
 	}
 
 	@Test
 	public void testGetOutgoingEdges() {
-		fail("Not yet implemented");
+		int nVert = 25;
+		int nEdge = 35;
+		int lowerW = 1;
+		int upperW = 15;
+		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		HashMap<Character,HashSet<WeightedEdge<Character,Integer>>> map = new HashMap<Character,HashSet<WeightedEdge<Character,Integer>>>();
+		for(Character c: graph.getVertices()) {
+			map.put(c, new HashSet<WeightedEdge<Character,Integer>>(graph.getOutgoingEdges(c)));
+		}
+		
+		for(Character c: graph.getVertices()) {
+			for(WeightedEdge<Character,Integer> we : map.get(c)) {
+				assertTrue(graph.getAdjacentVertices(we.getOpposingVertex(c)).contains(c));
+			}
+		}
 	}
 
 	@Test
 	public void testGetIncomingEdges() {
-		fail("Not yet implemented");
+		int nVert = 25;
+		int nEdge = 35;
+		int lowerW = 1;
+		int upperW = 15;
+		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		HashMap<Character,HashSet<WeightedEdge<Character,Integer>>> map = new HashMap<Character,HashSet<WeightedEdge<Character,Integer>>>();
+		for(Character c: graph.getVertices()) {
+			map.put(c, new HashSet<WeightedEdge<Character,Integer>>(graph.getIncomingEdges(c)));
+		}
+		
+		for(Character c: graph.getVertices()) {
+			for(WeightedEdge<Character,Integer> we : map.get(c)) {
+				assertTrue(graph.getAdjacentVertices(we.getOpposingVertex(c)).contains(c));
+			}
+		}
 	}
 
 	@Test
 	public void testIsWeighted() {
-		fail("Not yet implemented");
+
+		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>(); 
+		assertTrue(graph.isWeighted());
 	}
 
 	@Test
 	public void testIsDirected() {
-		fail("Not yet implemented");
+		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>(); 
+		assertTrue(! graph.isDirected());
 	}
 
 }
