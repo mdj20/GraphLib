@@ -89,7 +89,7 @@ public class DikstrasTest {
 			// tests results
 			boolean exactMatch = checkEdgeListEquality(dEdges,bmEdges); // checks for and exact match
 			
-			// BellmanFord and Dikstras might return slightly diffrent results if they find multiple shortest paths that are equal weight.
+			// BellmanFord and Dikstras might return slightly different results if they find multiple shortest paths that are equal weight.
 			if(!exactMatch) {
 					exactMatch = checkEdgeListWeightIntTotal(dEdges,bmEdges); // checks for a weight sum match, 
 				}

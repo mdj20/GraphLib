@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import interfaces.Edge;
 import interfaces.Graph;
+import interfaces.WeightedDirectionalEdge;
 import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
 import testutilities.FastGraphBuilder;
@@ -18,12 +20,15 @@ public class DepthFirst {
 	public static <V,E extends Edge<V>> List<E> depthFirstSearch(Graph<V,E> graph, V source, V sink){
 		List<E> ret = new ArrayList<E>();
 		if(graph.getVertices().contains(source)&&graph.getVertices().contains(sink)) {
-		LinkedList<SimplePathChain<V,E,?>> pathChain = new LinkedList<SimplePathChain<V,E,?>>();
-		HashSet<V> checked = new HashSet<V>();
-		pathChain.add(new SimplePathChain<V,E,Integer>(source,null,null));
-		if(DepthFirstRecursive(graph,source,sink,pathChain,checked));
-			System.out.println("Success!");
-		
+			LinkedList<SimplePathChain<V,E,?>> pathChain = new LinkedList<SimplePathChain<V,E,?>>();
+			HashSet<V> checked = new HashSet<V>();
+			pathChain.add(new SimplePathChain<V,E,Integer>(source,null,null));
+			if(DepthFirstRecursive(graph,source,sink,pathChain,checked)){	
+				ret =  aggregateEdgeList(pathChain);
+				for(E e: ret){
+					//System.out.println(e.getVertex(0)+" "+e.getVertex(1));
+				}
+			}
 		}
 		return ret;
 	}
@@ -60,11 +65,34 @@ public class DepthFirst {
 		return ret;	
 	}
 	
+	private static <V,E extends Edge<V>> ArrayList<E> aggregateEdgeList(LinkedList<SimplePathChain<V,E,?>> pathChain ){
+		ArrayList<E> edgeList = new ArrayList<E>(pathChain.size());
+		pathChain.pollFirst();
+		for(SimplePathChain<V,E,?> pc: pathChain){
+			edgeList.add(pc.edge);
+		}
+		return edgeList;
+	}
 	
-	private static void main(String args[]){
+	
+	public static void main(String args[]){
 		// smoke test
 		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
-		depthFirstSearch(graph,'A','C');
-		
+		Random rando = new Random(System.nanoTime());
+		for(int i = 0 ; i < 25000 ; i++){
+			WeightedAdjacencyListDiGraph<Character,Integer> rGraph = FastGraphBuilder.buildRandomWeightedDiGraph(25, 45, 1, 15);
+			Character source = null, sink = null;
+			ArrayList<Character> verts =  new ArrayList<Character>(rGraph.getVertices());
+			while(source == null || sink == null || source.equals(sink)){
+				source = verts.get(rando.nextInt(25));
+				sink = verts.get(rando.nextInt(25));
+			}
+			List<WeightedDirectionalEdge<Character,Integer>> edgeList = depthFirstSearch(rGraph,source,sink);
+			System.out.println("GRAPH :"+source+" -> "+sink+"\nEdge: "+edgeList.size());
+			for(WeightedDirectionalEdge<Character,Integer> wde: edgeList){
+				System.out.println(wde.getSource()+" "+wde.getSink());
+			}
+			System.out.println();
+		}
 	}
 }
