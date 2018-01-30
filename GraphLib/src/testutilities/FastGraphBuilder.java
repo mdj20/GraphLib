@@ -48,7 +48,7 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
-	public static WeightedAdjacencyListDiGraph<Character,Integer> buildRandomDiGraph(int v, int e, int lowerBoundWeight, int upperBoundWeight ){
+	public static WeightedAdjacencyListDiGraph<Character,Integer> buildRandomWeightedDiGraph(int v, int e, int lowerBoundWeight, int upperBoundWeight ){
 		int range = 0,offset = 0;
 		if (lowerBoundWeight <= upperBoundWeight) {
 			range = upperBoundWeight-lowerBoundWeight;
@@ -138,33 +138,5 @@ public class FastGraphBuilder {
 		return array;
 	}
 	
-	
-
-	
-	// smoke test main
-	public static void main(String args[]) {
-		char chars[] = new char[10];
-		WeightedAdjacencyListGraph<Character,Integer> graph = getWeightedGraph();
-		for(Character c : graph.getVertices()) {
-			System.out.println(c);
-		}
-		for(WeightedEdge<Character,Integer> c : graph.getEdges()) {
-			System.out.println(c.getVertex(0)+" "+c.getWeight()+" "+c.getVertex(1));
-		}
-		
-		
-		System.out.println("Random Smoke Test");
-		graph = buildRandomWeightedGraph(10,15,0,7);
-		for(int i =0;i<50;i++) {
-			for(Character c : graph.getVertices()) {
-				System.out.println("Vertex: "+c);
-				for (WeightedEdge<Character,Integer> we:graph.getConnectingEdges(c)){
-					System.out.println(we.getVertex(0)+" "+we.getWeight()+" "+we.getVertex(1));
-				}
-			
-			}
-		}
-		
-	}
 	
 }

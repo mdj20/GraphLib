@@ -36,9 +36,13 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	}
 
 	@Override
-	public void addVertex(V vertex) {
-		if(!graph.containsKey(vertex))
+	public boolean addVertex(V vertex) {
+		boolean ret = false;
+		if(!graph.containsKey(vertex)) {
 			graph.put(vertex, new HashSet<E>());
+			ret = true;
+		}
+		return ret;
 	}
 
 	@Override

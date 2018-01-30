@@ -15,7 +15,7 @@ public interface Graph<V,E extends Edge<V>> {
 	 * 
 	 *  @param vertex Object to be added
 	 */
-	public void addVertex(V vertex);
+	public boolean addVertex(V vertex);
 	public void addEdge(E edge);
 	
 	/** Creates edge between vertex1 and vertex 2

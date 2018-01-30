@@ -31,7 +31,7 @@ public class DikstrasTest {
 		for(int i = 0 ; i < nTestIterations ; i ++ ) {
 			
 			// create random graph, and pull a source and a sink for pathfinding searches
-			WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.buildRandomDiGraph(nVerts, nEdges, lowerBoundWeight, upperBoundWeight);
+			WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedDiGraph(nVerts, nEdges, lowerBoundWeight, upperBoundWeight);
 			ArrayList<Character> vertices = new ArrayList<Character>(graph.getVertices());
 			sourceIndex = rando.nextInt(vertices.size());
 			sinkIndex = rando.nextInt(vertices.size());
@@ -70,7 +70,7 @@ public class DikstrasTest {
 		for(int i = 0 ; i < nTestIterations ; i ++ ) {
 			
 			// create random graph, and pull a source and a sink for pathfinding searches
-			WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.buildRandomDiGraph(nVerts, nEdges, lowerBoundWeight, upperBoundWeight);
+			WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedDiGraph(nVerts, nEdges, lowerBoundWeight, upperBoundWeight);
 			ArrayList<Character> vertices = new ArrayList<Character>(graph.getVertices());
 			sourceIndex = rando.nextInt(vertices.size());
 			sinkIndex = rando.nextInt(vertices.size());

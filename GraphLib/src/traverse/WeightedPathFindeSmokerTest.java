@@ -53,7 +53,7 @@ public class WeightedPathFindeSmokerTest {
 		boolean equals = dikpath0.getEdgeList().equals(bmpath0.getEdgeList());
 		System.out.println(equals);
 		
-		WeightedAdjacencyListDiGraph<Character, Integer> randograph0 = FastGraphBuilder.buildRandomDiGraph(nVertex, nEdge, lowerWeight, upperWeight);
+		WeightedAdjacencyListDiGraph<Character, Integer> randograph0 = FastGraphBuilder.buildRandomWeightedDiGraph(nVertex, nEdge, lowerWeight, upperWeight);
 		
 		WeightedPathFinder<WeightedAdjacencyListDiGraph<Character,Integer>,
 		WeightedDirectionalEdge<Character,Integer>,Character,
@@ -69,7 +69,7 @@ public class WeightedPathFindeSmokerTest {
 		boolean master = true;
 		
 		for(int i = 0 ; i < 10000 ; i++){
-			randograph0 = FastGraphBuilder.buildRandomDiGraph(nVertex, nEdge, lowerWeight, upperWeight);
+			randograph0 = FastGraphBuilder.buildRandomWeightedDiGraph(nVertex, nEdge, lowerWeight, upperWeight);
 			randoPathFinder = WeightedPathFinder.getWeightedPathFinder(randograph0);
 			Character source = 'C', sink = 'A';
 			Set<Character> verts = randograph0.getVertices();
