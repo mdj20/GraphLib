@@ -12,10 +12,10 @@ public enum TestGraphData {
 			new Character[]	{'B','A','C','C','E','B','D','E','F','D'},
 			new Integer[]	{ 5,  3,  20, 15, 5,  8,  35, 25, 7,  7});
 
-	Character[] vertex;
-	Character[] source;
-	Character[] sink;
-	Integer[] weight;
+	private final Character[] vertex;
+	private final Character[] source;
+	private final Character[] sink;
+	private final Integer[] weight;
 	
 	TestGraphData(Character[] vertices, Character[] source, Character[] sink, Integer[] weight){
 		this.vertex = vertices;

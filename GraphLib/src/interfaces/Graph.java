@@ -16,6 +16,13 @@ public interface Graph<V,E extends Edge<V>> {
 	 *  @param vertex Object to be added
 	 */
 	public boolean addVertex(V vertex);
+	
+	/**	Adds edge object to graph, and updates internal structure to reflect it's inclusion as if it had be constructed via addEdge(V v1,V v2);
+	 * 
+	 * @param edge - edge 
+	 * @return true if addition was successful.
+	 */
+	
 	public boolean addEdge(E edge);
 	
 	/** Creates edge between vertex1 and vertex 2
