@@ -22,11 +22,14 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 	}
 
 	@Override
-	public void addEdge(E edge) {
+	public boolean addEdge(E edge) {
+		boolean ret = false;
 		if (checkVertices(edge)) {
 			addEdgeToGraph(edge.getSource(),edge);
 			edges.add(edge);
+			ret = true;
 		}
+		return ret;
 	}
 	
 	

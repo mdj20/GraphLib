@@ -20,5 +20,5 @@ public interface WeightedGraph<V,E extends WeightedEdge<V,W>, W> extends Graph<V
 	 * @param weight Weight of the edge.
 	 */
 	
-	public void addEdge(V vertex1, V vertex2, W weight);
+	public boolean addEdge(V vertex1, V vertex2, W weight);
 }

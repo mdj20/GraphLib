@@ -15,9 +15,9 @@ public class WeightedAdjacencyListGraph<V, W> extends AbstractAdjacencyListGraph
 	}
 
 	@Override
-	public void addEdge(V vertex1, V vertex2, W weight) {
+	public boolean addEdge(V vertex1, V vertex2, W weight) {
 		WeightedEdge<V,W> edge = new SimpleWeightedEdge<V,W>(vertex1,vertex2,weight);
-		super.addEdge(edge);
+		return super.addEdge(edge);
 	}
 
 }

@@ -46,12 +46,15 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	}
 
 	@Override
-	public void addEdge(E edge) {
+	public boolean addEdge(E edge) {
+		boolean ret = false;
 		if(checkVertices(edge.getVertices().get(0),edge.getVertices().get(1))) {
 			addEdgeToGraph(edge.getVertices().get(0),edge);
 			addEdgeToGraph(edge.getVertices().get(1),edge);
 			edges.add(edge);
+			ret =true;
 		}
+		return ret;
 	}
 
 	@Override
@@ -98,10 +101,14 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	}
 
 	@Override
-	public void addEdge(V vertex1, V vertex2) {
+	public boolean addEdge(V vertex1, V vertex2) {
+		boolean ret =false;
 		if(checkVertices(vertex1,vertex2)){
 			addEdge(createEdge(vertex1,vertex2));
+			
+			ret = true;
 		}
+		return ret;
 	}
 
 	

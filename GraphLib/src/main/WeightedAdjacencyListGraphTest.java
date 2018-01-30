@@ -2,11 +2,14 @@ package main;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import org.junit.Test;
 
+import interfaces.WeightedEdge;
 import testutilities.FastGraphBuilder;
 
 public class WeightedAdjacencyListGraphTest {
@@ -19,7 +22,34 @@ public class WeightedAdjacencyListGraphTest {
 
 	@Test
 	public void testAddEdgeVVW() {
-		fail("Not yet implemented");
+		int nEdge = 5;
+		Random rando = new Random(System.nanoTime());
+		ArrayList<Character> sourceList = new ArrayList<Character>();
+		ArrayList<Character> sinkList = new ArrayList<Character>();
+		ArrayList<Integer> weightList = new ArrayList<Integer>();
+		Set<WeightedEdge<Character,Integer>> edgeSetBuild = new HashSet<WeightedEdge<Character,Integer>>();
+		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(10, 0, 0, 0);
+		ArrayList<Character> verts = new ArrayList<Character>(graph.getVertices());
+		Character source = null , sink = null;
+		int weight=0;
+		for(int i = 0 ; i < nEdge ; i++) {
+			source = verts.get(rando.nextInt(verts.size()));
+			sink = verts.get(rando.nextInt(verts.size()));
+			weight = rando.nextInt(25);
+			if(graph.addEdge(source, sink, weight)) {
+				sourceList.add(source);
+				sinkList.add(sink);
+				weightList.add(weight);
+			}
+		}
+		
+		Set<WeightedEdge<Character,Integer>> edgeSet = graph.getEdges(); 
+		for(WeightedEdge<Character,Integer> edge: edgeSet) {
+			
+		}
+		
+		
+		
 	}
 
 	@Test
@@ -40,8 +70,9 @@ public class WeightedAdjacencyListGraphTest {
 			}
 		}
 		for(Character c: refrence ) {
-			assertTrue(graph.getVertices().contains(c));
+			assertTrue(graph.getVertices().contains(c)); // check if all verts that were successfully inserted, are returned in the list.
 		}
+		assertTrue(nSuccess==graph.getVertices().size());
 	}
 
 	@Test
