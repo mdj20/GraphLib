@@ -1,4 +1,4 @@
-package algorithms;
+package traverse.algorithm;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +13,7 @@ import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
 import testutilities.FastGraphBuilder;
 import testutilities.TestGraphData;
+import traverse.WeightedPathChain;
 
 public class BellmanFord {
 

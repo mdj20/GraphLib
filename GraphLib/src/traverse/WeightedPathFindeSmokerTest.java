@@ -1,4 +1,4 @@
-package algorithms;
+package traverse;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;

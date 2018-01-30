@@ -1,4 +1,4 @@
-package algorithms;
+package traverse;
 
 import java.util.List;
 

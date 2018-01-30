@@ -1,9 +1,11 @@
-package algorithms;
+package traverse;
 
 import java.util.List;
 
 import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;
+import traverse.algorithm.BellmanFord;
+import traverse.algorithm.Dikstras;
 
 public class WeightedPathFinder<G extends WeightedGraph<V,E,W>, E extends WeightedEdge<V,W>, V, W extends Number & Comparable<W>>
 extends AbstractPathFinder<G, V, E> {

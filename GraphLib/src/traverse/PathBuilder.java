@@ -1,4 +1,4 @@
-package algorithms;
+package traverse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
 import testutilities.FastGraphBuilder;
 import testutilities.TestGraphData;
+import traverse.algorithm.Dikstras;
 
 	/*
 	 * Constructs Path Objects, with verification 
