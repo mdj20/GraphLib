@@ -61,6 +61,11 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	public void removeVertex(V vertex) {
 		if(graph.containsKey(vertex)) {
 			edges.removeAll(graph.get(vertex));	
+			Set<E> connectingEdges = this.getConnectingEdges(vertex);
+			for(E e: connectingEdges) {
+				removeEdge(e);
+			}
+		
 			graph.remove(vertex);
 		}
 	}
@@ -70,12 +75,12 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 		if(checkVertices(edge)) {
 			removeEdgeFromGraph(edge.getVertices().get(0),edge);
 			removeEdgeFromGraph(edge.getVertices().get(1),edge);
+			edges.remove(edge);
 		}
 	}
 
 	@Override
 	public Set<V> getVertices() {
-		// TODO Auto-generated method stub
 		return graph.keySet();
 	}
 
@@ -105,7 +110,6 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 		boolean ret =false;
 		if(checkVertices(vertex1,vertex2)){
 			addEdge(createEdge(vertex1,vertex2));
-			
 			ret = true;
 		}
 		return ret;
