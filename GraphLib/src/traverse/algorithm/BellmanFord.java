@@ -41,6 +41,31 @@ public class BellmanFord {
 		return distanceMap;
 	}
 	
+	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> Map<V,Double> findDistancesDouble(WeightedGraph<V,E,W> graph, V source){
+		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
+		int nVertex = vertices.size();
+		HashMap<V,Double>  distanceMap = new HashMap<V,Double>();
+		distanceMap.put(source, 0.0);
+		for(int i = 0 ; i < nVertex-1 ; i++) {
+			for(V v: vertices) {
+				if(distanceMap.containsKey(v)) {
+					for(WeightedEdge<V,W> edge: graph.getOutgoingEdges(v)) {
+						V opposing = edge.getOpposingVertex(v);
+						if(distanceMap.containsKey(opposing)){
+							if(distanceMap.get(v)+edge.getWeight().intValue() < distanceMap.get(opposing)){
+								distanceMap.put(opposing, distanceMap.get(v).doubleValue() + edge.getWeight().doubleValue() );
+							}	
+						}
+						else {
+							distanceMap.put(opposing, edge.getWeight().doubleValue()+distanceMap.get(v));
+						}
+					}
+				}
+			}
+		}
+		return distanceMap;
+	}
+	
 	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source,V sink){
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		ArrayList<E> pathEdgeList = new ArrayList<E>(); 

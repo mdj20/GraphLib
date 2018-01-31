@@ -120,6 +120,18 @@ public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 		return ret;
 	}
 	
+	public int edgeListSize() {
+		return edgeList.size();
+	}
+	
+	
+	// removes all edges including and after index 
+	public void removeEdgefrom(int index) {
+		if(index+1 >= edgeListSize()) {
+			throw new IllegalArgumentException("index+1 value larger than edge list size");
+		}
+	}
+	
 	public Path<V,E> build(){
 		if(checkPath()) {
 			path = new SimplePath<V,E>(source,tail,edgeList);

@@ -76,6 +76,7 @@ public class BreadthFirst {
 		return ret;
 	}
 	
+	// smoke test
 	public static void main(String args[]){
 		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
 		Random rando = new Random(System.nanoTime());
