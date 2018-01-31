@@ -1,12 +1,12 @@
-package traverse;
+package traversal;
 import java.util.List;
 
 import interfaces.Edge;
 import interfaces.Graph;
 import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;
-import traverse.algorithm.BreadthFirst;
-import traverse.algorithm.DepthFirst;
+import traversal.algorithm.BreadthFirst;
+import traversal.algorithm.DepthFirst;
 
 public abstract class AbstractPathFinder<G extends Graph<V,E>,V,E extends Edge<V>> {
 	protected G graph;

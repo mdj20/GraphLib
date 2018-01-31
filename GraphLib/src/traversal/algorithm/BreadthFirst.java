@@ -1,4 +1,4 @@
-package traverse.algorithm;
+package traversal.algorithm;
 
 import java.util.ArrayList;
 import java.util.HashMap;

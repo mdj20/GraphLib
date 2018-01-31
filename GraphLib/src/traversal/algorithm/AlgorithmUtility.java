@@ -1,4 +1,4 @@
-package traverse.algorithm;
+package traversal.algorithm;
 
 import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;

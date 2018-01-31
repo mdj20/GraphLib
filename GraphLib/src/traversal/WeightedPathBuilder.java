@@ -1,8 +1,8 @@
-package traverse;
+package traversal;
 
 import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;
-import traverse.algorithm.AlgorithmUtility;
+import traversal.algorithm.AlgorithmUtility;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package traverse;
+package traversal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import interfaces.WeightedGraph;
 import main.WeightedAdjacencyListDiGraph;
 import testutilities.FastGraphBuilder;
 import testutilities.TestGraphData;
-import traverse.algorithm.Dikstras;
+import traversal.algorithm.Dikstras;
 
 /**
  * 

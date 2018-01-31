@@ -1,11 +1,11 @@
-package traverse;
+package traversal;
 
 import java.util.List;
 
 import interfaces.WeightedEdge;
 import interfaces.WeightedGraph;
-import traverse.algorithm.BellmanFord;
-import traverse.algorithm.Dikstras;
+import traversal.algorithm.BellmanFord;
+import traversal.algorithm.Dikstras;
 
 /**
  * 

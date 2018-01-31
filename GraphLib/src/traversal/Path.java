@@ -1,4 +1,4 @@
-package traverse;
+package traversal;
 
 import java.util.List;
 
